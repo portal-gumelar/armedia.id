@@ -2,7 +2,7 @@
 
 import React, { useState, useSyncExternalStore } from "react";
 
-const WA_NUMBER = "6281234567890"; // Ganti dengan nomor WhatsApp ARMDEIA asli
+const WA_NUMBER = "6289646415444"; // Ganti dengan nomor WhatsApp ARMDEIA asli
 const WA_MESSAGE = encodeURIComponent(
   "Halo ARMEDIA! Saya tertarik dengan layanan internet Fiber Optic. Bisa dibantu info lebih lanjut?"
 );

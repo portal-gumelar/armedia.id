@@ -89,11 +89,9 @@ export default function Home() {
     return () => { isMounted = false; };
   }, []);
 
-  // Handler interaksi paket & registrasi otomatis ke modal form
-  const openRegisterModal = (packageId: string) => {
-    setSelectedPackage(packageId);
-    setIsModalOpen(true);
-    setIsMobileMenuOpen(false); 
+  // Handler interaksi paket & registrasi otomatis ke portal baru
+  const openRegisterModal = (paket: string) => {
+    window.location.href = 'https://gumelar.armedia.id/';
   };
 
   // Handler smooth scroll navigasi internal
@@ -137,12 +135,12 @@ export default function Home() {
           </nav>
 
           <div className="hidden md:block">
-            <button
-              onClick={() => openRegisterModal('GUYUB_1')}
-              className="rounded-md bg-red-600 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition-all duration-300 hover:bg-slate-900 cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
+            <a
+              href="https://gumelar.armedia.id/"
+              className="inline-block rounded-md bg-red-600 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition-all duration-300 hover:bg-slate-900 cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
             >
               MENU DAFTAR
-            </button>
+            </a>
           </div>
 
           {/* Hamburger Trigger Tombol Mode HP */}
@@ -162,12 +160,12 @@ export default function Home() {
             <button onClick={() => scrollToSection('services-section', 'services')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">LAYANAN</button>
             <button onClick={() => scrollToSection('testimonials-section', 'testimonials')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">TESTIMONI</button>
             <button onClick={() => scrollToSection('blog-section', 'blog')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">ARTIKEL & BERITA</button>
-            <button
-              onClick={() => openRegisterModal('GUYUB_1')}
-              className="w-full mt-2 rounded-md bg-red-600 py-3 text-center text-xs font-bold uppercase tracking-wider text-white shadow-sm"
+            <a
+              href="https://gumelar.armedia.id/"
+              className="block w-full mt-2 rounded-md bg-red-600 py-3 text-center text-xs font-bold uppercase tracking-wider text-white shadow-sm"
             >
               MENU DAFTAR
-            </button>
+            </a>
             <div className="pt-2 border-t border-slate-100">
               <DarkModeToggle />
             </div>
