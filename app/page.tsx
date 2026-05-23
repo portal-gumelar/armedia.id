@@ -41,25 +41,52 @@ export default function Home() {
   // Data dari Supabase
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [articles, setArticles] = useState<Article[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fallback Data
+  const fallbackTestimonials: Testimonial[] = [
+    { id: 1, quote: "Koneksi stabil dan jarang gangguan. Sangat membantu bisnis online saya.", author_name: "Budi Santoso", author_role: "Pemilik UMKM", avatar_initials: "BS" },
+    { id: 2, quote: "Pelayanan teknisi sangat cepat dan ramah saat ada kendala.", author_name: "Siti Aminah", author_role: "Ibu Rumah Tangga", avatar_initials: "SA" },
+    { id: 3, quote: "Ping rendah, cocok banget buat main game online kompetitif.", author_name: "Reza Pahlevi", author_role: "Gamer", avatar_initials: "RP" }
+  ];
+
+  const fallbackArticles: Article[] = [
+    { id: 1, category: "TIPS & TRIK", title: "Cara Memaksimalkan Sinyal WiFi di Rumah", excerpt: "Posisikan router di tengah ruangan untuk jangkauan yang lebih baik.", image_url: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=400&q=80" },
+    { id: 2, category: "TEKNOLOGI", title: "Mengenal Keunggulan Internet Fiber Optic", excerpt: "Fiber optic menawarkan kecepatan dan kestabilan yang jauh lebih baik.", image_url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=400&q=80" },
+    { id: 3, category: "PROMO", title: "Diskon Pemasangan Baru Bulan Ini", excerpt: "Dapatkan potongan harga khusus untuk pendaftaran di bulan ini.", image_url: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=400&q=80" },
+    { id: 4, category: "INFORMASI", title: "Perluasan Jaringan ARMEDIA 2026", excerpt: "Kami terus memperluas jaringan ke berbagai pelosok desa.", image_url: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80" }
+  ];
 
   useEffect(() => {
-    // Fetch Testimonials
-    supabase
-      .from("testimonials")
-      .select("*")
-      .order("id", { ascending: true })
-      .then(({ data, error }) => {
-        if (!error && data) setTestimonials(data);
-      });
+    let isMounted = true;
+    
+    Promise.all([
+      supabase.from("testimonials").select("*").order("id", { ascending: true }),
+      supabase.from("articles").select("*").order("id", { ascending: true })
+    ]).then(([testiRes, articleRes]) => {
+      if (!isMounted) return;
+      
+      if (!testiRes.error && testiRes.data && testiRes.data.length > 0) {
+        setTestimonials(testiRes.data);
+      } else {
+        setTestimonials(fallbackTestimonials);
+      }
 
-    // Fetch Articles
-    supabase
-      .from("articles")
-      .select("*")
-      .order("id", { ascending: true })
-      .then(({ data, error }) => {
-        if (!error && data) setArticles(data);
-      });
+      if (!articleRes.error && articleRes.data && articleRes.data.length > 0) {
+        setArticles(articleRes.data);
+      } else {
+        setArticles(fallbackArticles);
+      }
+      setIsLoading(false);
+    }).catch(() => {
+      if (isMounted) {
+        setTestimonials(fallbackTestimonials);
+        setArticles(fallbackArticles);
+        setIsLoading(false);
+      }
+    });
+
+    return () => { isMounted = false; };
   }, []);
 
   // Handler interaksi paket & registrasi otomatis ke modal form
@@ -425,7 +452,9 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {testimonials.length > 0 ? (
+              {isLoading ? (
+                <p className="col-span-full text-center text-xs text-slate-400">Memuat testimoni...</p>
+              ) : testimonials.length > 0 ? (
                 testimonials.map((t) => (
                   <div key={t.id} className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
                     <p className="text-xs italic text-slate-600 leading-relaxed">
@@ -441,7 +470,7 @@ export default function Home() {
                   </div>
                 ))
               ) : (
-                <p className="col-span-full text-center text-xs text-slate-400">Memuat testimoni...</p>
+                <p className="col-span-full text-center text-xs text-slate-400">Belum ada testimoni.</p>
               )}
             </div>
           </motion.div>
@@ -463,7 +492,9 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {articles.length > 0 ? (
+            {isLoading ? (
+              <p className="col-span-full text-center text-xs text-slate-400">Memuat artikel...</p>
+            ) : articles.length > 0 ? (
               articles.map((a) => (
                 <div key={a.id} className="group rounded-xl border border-slate-200 bg-white overflow-hidden shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-lg">
                   <div className="h-40 w-full relative overflow-hidden bg-slate-100">
@@ -482,7 +513,7 @@ export default function Home() {
                 </div>
               ))
             ) : (
-              <p className="col-span-full text-center text-xs text-slate-400">Memuat artikel...</p>
+              <p className="col-span-full text-center text-xs text-slate-400">Belum ada artikel.</p>
             )}
           </div>
           </motion.div>
