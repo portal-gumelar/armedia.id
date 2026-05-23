@@ -8,6 +8,7 @@ import ScrollObserver from '@/src/components/ui/scroll-observer';
 import DarkModeToggle from '@/src/components/ui/dark-mode-toggle';
 import { supabase } from '@/src/lib/supabase';
 import FomoNotification from '@/src/components/sections/FomoNotification';
+import { motion } from 'framer-motion';
 
 const CoverageSection = dynamic(() => import('@/src/components/sections/Coverage'), { ssr: false });
 
@@ -153,8 +154,13 @@ export default function Home() {
       <main className="pt-24">
         
         {/* ================= 2. HERO SECTION WITH RESPONSIVE BANNER ================= */}
-        <section className="reveal-on-scroll mx-auto max-w-7xl px-6 py-16 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="flex flex-col items-start text-left">
+        <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col items-start text-left"
+          >
             <div className="inline-flex items-center gap-2 rounded bg-red-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-red-600 animate-pulse">
               🇮🇩 Konektivitas Tanpa Batas Masa Depan
             </div>
@@ -166,23 +172,30 @@ export default function Home() {
               Solusi internet Fiber Optic dan VSAT terbaik untuk mengakselerasi digitalisasi bisnis Anda. Kami percaya bahwa akses internet yang stabil dan cepat adalah fondasi utama dalam percepatan digitalisasi di Indonesia.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-6">
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => openRegisterModal('GUYUB_1')}
-                className="rounded-md bg-red-600 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-red-600/10 transition-all duration-300 hover:bg-slate-900 hover:shadow-xl cursor-pointer transform hover:-translate-y-0.5"
+                className="rounded-md bg-red-600 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-red-600/10 transition-all duration-300 hover:bg-slate-900 hover:shadow-xl cursor-pointer"
               >
                 MULAI DAFTAR SEKARANG
-              </button>
+              </motion.button>
               <div className="flex flex-col border-l border-slate-200 pl-6">
                 <span className="text-[10px] text-slate-400 uppercase font-black tracking-widest">CUKUP MBAYAR WULANANE</span>
                 <span className="text-2xl font-black tracking-tight text-red-600">Rp 115.000<span className="text-sm font-medium text-slate-500">/bln</span></span>
               </div>
             </div>
-          </div>
+          </motion.div>
           
           {/* Responsive Infrastructure Image Placeholder via Unsplash */}
-          <div className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-xl border border-slate-100 group">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-xl border border-slate-100 group"
+          >
             <img 
-              src="/hero-fiber-optic.png" 
+              src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1470&q=80" 
               alt="ARMEDIA Fiber Infrastructure" 
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
@@ -193,12 +206,18 @@ export default function Home() {
               </span>
               <span className="text-[10px] font-black text-white bg-red-600 px-2 py-0.5 rounded">CORE NODE</span>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* ================= 3. TENTANG KAMI SECTION ================= */}
-        <section id="about-section" className="reveal-on-scroll mx-auto max-w-7xl px-6 py-24 lg:px-8 border-t border-slate-100 scroll-mt-20">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+        <section id="about-section" className="mx-auto max-w-7xl px-6 py-24 lg:px-8 border-t border-slate-100 scroll-mt-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start"
+          >
             <div className="relative group">
               <span className="text-xs font-bold uppercase tracking-widest text-red-600">ABOUT COMPANY</span>
               <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
@@ -217,12 +236,18 @@ export default function Home() {
                 Melalui infrastruktur jaringan yang andal dan inovatif, ARMEDIA hadir sebagai mitra strategis yang berorientasi pada kepuasan pelanggan. Kami menyediakan solusi konektivitas berkecepatan tinggi yang dirancang untuk mendukung berbagai kebutuhan—mulai dari kenyamanan residensial, produktivitas perkantoran, hingga efisiensi operasional UMKM.
               </p>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* ================= 4. VALUE PLANS / LAYANAN SECTION (Elevating Cards) ================= */}
-        <section id="services-section" className="reveal-on-scroll bg-slate-50 py-24 border-t border-slate-100 scroll-mt-20">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <section id="services-section" className="bg-slate-50 py-24 border-t border-slate-100 scroll-mt-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="mx-auto max-w-7xl px-6 lg:px-8"
+          >
             <div className="text-center">
               <span className="text-xs font-bold uppercase tracking-widest text-red-600">PAKET INTERNET</span>
               <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
@@ -333,12 +358,18 @@ export default function Home() {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* ================= 5. KEUNGGULAN / WHY US SECTION WITH VECTOR SVG ICONS ================= */}
-        <section id="why-us-section" className="reveal-on-scroll mx-auto max-w-7xl px-6 py-24 lg:px-8 scroll-mt-20">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 text-center lg:text-left">
+        <section id="why-us-section" className="mx-auto max-w-7xl px-6 py-24 lg:px-8 scroll-mt-20">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="grid grid-cols-1 gap-12 lg:grid-cols-3 text-center lg:text-left"
+          >
             <div className="lg:col-span-1 flex flex-col justify-center">
               <span className="text-xs font-bold uppercase tracking-widest text-red-600">MENGAPA BERMITRA</span>
               <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
@@ -374,12 +405,18 @@ export default function Home() {
                 <span className="mt-2 text-[11px] font-medium text-slate-500 leading-relaxed">Solusi digital adaptif dirancang khusus skala personal hingga enterprise.</span>
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* ================= 6. TESTIMONI SECTION ================= */}
-        <section id="testimonials-section" className="reveal-on-scroll bg-slate-50 py-24 border-t border-b border-slate-100 scroll-mt-20">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <section id="testimonials-section" className="bg-slate-50 py-24 border-t border-b border-slate-100 scroll-mt-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="mx-auto max-w-7xl px-6 lg:px-8"
+          >
             <div className="max-w-2xl mx-auto text-center mb-16">
               <span className="text-xs font-bold uppercase tracking-widest text-red-600">TESTIMONI</span>
               <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
@@ -407,12 +444,18 @@ export default function Home() {
                 <p className="col-span-full text-center text-xs text-slate-400">Memuat testimoni...</p>
               )}
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* ================= 7. ARTIKEL & BERITA WITH UNSPLASH MEDIA GRID ================= */}
-        <section id="blog-section" className="reveal-on-scroll mx-auto max-w-7xl px-6 py-24 lg:px-8 scroll-mt-20">
-          <div className="max-w-2xl mx-auto text-center mb-16">
+        <section id="blog-section" className="mx-auto max-w-7xl px-6 py-24 lg:px-8 scroll-mt-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="max-w-2xl mx-auto text-center mb-16">
             <span className="text-xs font-bold uppercase tracking-widest text-red-600">WAWASAN DIGITAL</span>
             <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
               Artikel & Berita Terbaru
@@ -442,6 +485,7 @@ export default function Home() {
               <p className="col-span-full text-center text-xs text-slate-400">Memuat artikel...</p>
             )}
           </div>
+          </motion.div>
         </section>
 
         {/* ================= 8.5 COVERAGE SECTION ================= */}
@@ -559,8 +603,14 @@ export default function Home() {
       )}
 
         {/* ================= 9. FOOTER SECTION (WITH WHITE INVERTED LOGO) ================= */}
-      <footer className="reveal-on-scroll bg-slate-900 text-white pt-20 pb-8 border-t border-slate-800">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <footer className="bg-slate-900 text-white pt-20 pb-8 border-t border-slate-800">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mx-auto max-w-7xl px-6 lg:px-8"
+        >
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
             <div className="space-y-4">
               {/* Logo Resmi Ter-invert Menjadi Putih Bersih */}
@@ -602,7 +652,7 @@ export default function Home() {
             <p>© 2026 PT AKSES ARTHA MEDIA. All rights reserved.</p>
             <a href="/admin" className="text-slate-600 hover:text-red-400 transition-colors">🔑 Admin</a>
           </div>
-        </div>
+        </motion.div>
       </footer>
 
       </ScrollObserver>
