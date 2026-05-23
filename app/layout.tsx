@@ -13,36 +13,93 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ARMEDIA — Jembatan Digital Masa Depan | Internet Fiber Optic & VSAT",
+  title: "Internet Fiber Optic Gumelar | ARMEDIA — Mulai Rp 115.000/bln",
   description:
-    "PT AKSES ARTHA MEDIA (ARMEDIA) — Penyedia layanan internet Fiber Optic dan VSAT terbaik untuk rumah, kantor, dan UMKM. Cukup mbayar wulanane mulai Rp 115.000/bln. Daftar sekarang!",
+    "Pasang internet fiber optic di Gumelar, Banyumas mulai Rp 115.000/bulan. PT AKSES ARTHA MEDIA (ARMEDIA) — ISP terpercaya untuk rumah, warung, kantor & UMKM. Daftar online sekarang!",
   keywords: [
-    "internet fiber optic",
-    "ISP Indonesia",
+    "internet Gumelar",
+    "wifi Gumelar",
+    "pasang internet Gumelar",
+    "internet Banyumas",
+    "ISP Gumelar",
+    "internet fiber optic Gumelar",
     "ARMEDIA",
     "PT Akses Artha Media",
-    "internet murah",
-    "wifi rumahan",
-    "internet UMKM",
-    "VSAT",
+    "internet murah Gumelar",
+    "wifi murah Banyumas",
+    "provider internet Gumelar",
+    "internet rumahan Gumelar",
+    "internet UMKM Gumelar",
   ],
   authors: [{ name: "PT AKSES ARTHA MEDIA" }],
+  metadataBase: new URL("https://armedia.id"),
+  alternates: {
+    canonical: "https://armedia.id",
+  },
   openGraph: {
-    title: "ARMEDIA — Internet Fiber Optic Mulai Rp 115.000/bln",
+    title: "Internet Fiber Optic Gumelar | ARMEDIA — Mulai Rp 115.000/bln",
     description:
-      "Konektivitas tanpa batas untuk rumah, kantor, dan UMKM. Daftar sekarang!",
-    url: "https://aksesartamedia.id",
-    siteName: "ARMEDIA",
+      "Pasang internet fiber optic di Gumelar, Banyumas mulai Rp 115.000/bulan. Koneksi stabil, support lokal, daftar online sekarang!",
+    url: "https://armedia.id",
+    siteName: "ARMEDIA — PT Akses Artha Media",
     locale: "id_ID",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ARMEDIA — Internet Fiber Optic Mulai Rp 115.000/bln",
+    title: "Internet Fiber Optic Gumelar | ARMEDIA — Mulai Rp 115.000/bln",
     description:
-      "Konektivitas tanpa batas untuk rumah, kantor, dan UMKM. Daftar sekarang!",
+      "Pasang internet fiber optic di Gumelar, Banyumas mulai Rp 115.000/bulan. Daftar online sekarang!",
   },
-  robots: "index, follow",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+};
+
+// JSON-LD Structured Data untuk Google (Local Business)
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "InternetCafe",
+  "@id": "https://armedia.id",
+  name: "PT AKSES ARTHA MEDIA (ARMEDIA)",
+  alternateName: "ARMEDIA",
+  description:
+    "Penyedia layanan internet Fiber Optic dan VSAT untuk rumah, kantor, dan UMKM di Gumelar, Banyumas.",
+  url: "https://armedia.id",
+  telephone: "+62212247-2319",
+  email: "care@aksesartamedia.id",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Gumelar",
+    addressRegion: "Banyumas",
+    addressCountry: "ID",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: "-7.4167",
+    longitude: "108.9833",
+  },
+  areaServed: [
+    "Gumelar",
+    "Banyumas",
+    "Cihonje",
+    "Tlaga",
+    "Samudra",
+    "Paningkaban",
+    "Gancang",
+    "Kedungurang",
+  ],
+  priceRange: "Rp 115.000 - Rp 182.000",
+  openingHours: "Mo-Su 08:00-20:00",
+  sameAs: ["https://github.com/portal-gumelar"],
 };
 
 export default function RootLayout({
@@ -55,6 +112,12 @@ export default function RootLayout({
       lang="id"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
