@@ -10,12 +10,15 @@ export default function useScrollReveal(rootMargin = "0px 0px -40px 0px") {
     if (!el) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("revealed");
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            observer.unobserve(entry.target);
+          }
+        });
       },
-      { rootMargin, threshold: 0.1 }
+      { rootMargin, threshold: 0.01 }
     );
 
     // Observe direct children with reveal-on-scroll class

@@ -1,17 +1,23 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useSyncExternalStore } from "react";
 
 export default function DarkModeToggle() {
   const [isDark, setIsDark] = useState(false);
-  const [isClient, setIsClient] = useState(false);
+  
+  const isClient = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   useEffect(() => {
-    setIsClient(true);
     const stored = localStorage.getItem("theme");
     if (stored === "dark") {
-      setIsDark(true);
       document.documentElement.classList.add("dark");
+      setTimeout(() => {
+        setIsDark(true);
+      }, 0);
     }
   }, []);
 

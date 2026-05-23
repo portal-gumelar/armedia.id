@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useSyncExternalStore } from "react";
 
 const WA_NUMBER = "6281234567890"; // Ganti dengan nomor WhatsApp ARMDEIA asli
 const WA_MESSAGE = encodeURIComponent(
@@ -8,12 +8,12 @@ const WA_MESSAGE = encodeURIComponent(
 );
 
 export default function WhatsAppButton() {
-  const [isClient, setIsClient] = useState(false);
+  const isClient = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
   const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   if (!isClient) return null;
 

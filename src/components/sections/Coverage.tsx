@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useSyncExternalStore } from "react";
 import dynamic from "next/dynamic";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -117,8 +117,11 @@ function MapPlaceholder() {
 }
 
 export default function CoverageSection() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
+  const isClient = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   return (
     <section className="relative py-24 overflow-hidden border-t border-b border-slate-100 bg-slate-50">
@@ -127,7 +130,7 @@ export default function CoverageSection() {
           {/* Left - Interactive Map (Leaflet + OSM) */}
           <div className="relative order-2 lg:order-1">
             <div className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-xl border border-slate-200 z-0">
-              {mounted ? <LeafletMap /> : <MapPlaceholder />}
+              {isClient ? <LeafletMap /> : <MapPlaceholder />}
             </div>
 
             {/* Floating Badges */}
