@@ -1,0 +1,13 @@
+.git
+.gitignore
+.github
+.next
+node_modules
+npm-debug.log*
+.env*.local
+.DS_Store
+*.tsbuildinfo
+README.md
+.continue
+.cursor
+.kilo
