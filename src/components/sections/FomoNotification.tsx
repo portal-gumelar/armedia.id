@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useSyncExternalStore } from 'react';
 
 /* ─────────────────────────────────────────────
    FOMO DATA — 500 entri random dari kota Indonesia
@@ -54,36 +54,57 @@ function generateFomoData(count: number) {
 }
 
 export default function FomoNotification() {
-  const [isClient, setIsClient] = useState(false);
+  const isClient = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
   const [fomoEntries] = useState(() => generateFomoData(500));
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const [minutesAgo, setMinutesAgo] = useState(1);
 
-  const showNext = useCallback(() => {
-    setVisible(false);
-    setTimeout(() => {
-      setIndex((prev) => (prev + 1) % fomoEntries.length);
-      setMinutesAgo(Math.floor(Math.random() * 59) + 1);
-      setVisible(true);
-    }, 400);
-  }, [fomoEntries]);
-
   useEffect(() => {
-    setIsClient(true);
-    const initialTimer = setTimeout(() => {
-      setMinutesAgo(Math.floor(Math.random() * 59) + 1);
-      setVisible(true);
-    }, 2000);
-    const interval = setInterval(() => {
-      showNext();
-    }, 4000 + Math.floor(Math.random() * 2000));
+    let timer: NodeJS.Timeout;
+    
+    const startCycle = () => {
+      // 1. Initial wait before first popup (5 seconds)
+      timer = setTimeout(() => {
+        setMinutesAgo(Math.floor(Math.random() * 59) + 1);
+        setVisible(true);
+        scheduleHide();
+      }, 5000);
+    };
+
+    const scheduleHide = () => {
+      // 2. Keep visible for 7 seconds
+      timer = setTimeout(() => {
+        setVisible(false);
+        scheduleNextShow();
+      }, 7000);
+    };
+
+    const scheduleNextShow = () => {
+      // 3. Wait for exit animation (500ms) then advance index
+      timer = setTimeout(() => {
+        setIndex((prev) => (prev + 1) % fomoEntries.length);
+        setMinutesAgo(Math.floor(Math.random() * 59) + 1);
+        
+        // 4. Stay hidden for 15-25 seconds before showing next
+        const hiddenDuration = 15000 + Math.floor(Math.random() * 10000);
+        timer = setTimeout(() => {
+          setVisible(true);
+          scheduleHide();
+        }, hiddenDuration);
+      }, 500);
+    };
+
+    startCycle();
 
     return () => {
-      clearTimeout(initialTimer);
-      clearInterval(interval);
+      clearTimeout(timer);
     };
-  }, [showNext]);
+  }, [fomoEntries]);
 
   if (!isClient) return null;
 
