@@ -3,8 +3,8 @@ import { createClient } from "@supabase/supabase-js";
 
 // Gunakan service_role key di server-side
 const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
+  process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder-co.supabase.co",
+  process.env.SUPABASE_SERVICE_ROLE_KEY || "placeholder-service-role-key"
 );
 
 export async function POST(request: Request) {
