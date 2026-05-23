@@ -222,7 +222,7 @@ export default function Home() {
             className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-xl border border-slate-100 group"
           >
             <img 
-              src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1470&q=80" 
+              src="/hero-fiber-optic.png" 
               alt="ARMEDIA Fiber Infrastructure" 
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
