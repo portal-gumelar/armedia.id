@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /terima-kasih
+
+Sitemap: https://armedia.id/sitemap.xml
