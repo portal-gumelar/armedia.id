@@ -182,7 +182,7 @@ export default function Home() {
           {/* Responsive Infrastructure Image Placeholder via Unsplash */}
           <div className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-xl border border-slate-100 group">
             <img 
-              src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=800&auto=format&fit=crop" 
+              src="/hero-fiber-optic.png" 
               alt="ARMEDIA Fiber Infrastructure" 
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
