@@ -31,6 +31,77 @@ type Article = {
   image_url: string;
 };
 
+/* ─────────────────────────────────────────────
+   INTERNET PACKAGES DATA
+   ───────────────────────────────────────────── */
+const internetPackages = [
+  {
+    id: 'GUYUB_1',
+    name: 'GUYUB_1 (Starter)',
+    speed: '20 Mbps',
+    speedText: 'Upto 20 MBPS',
+    price: 'Rp 115.000',
+    features: [
+      'Bayar 115.000 Langsung ON',
+      'Download / Upload Unlimited',
+      'DUAL BAND 2,4G & 5G'
+    ],
+    isPopular: true
+  },
+  {
+    id: 'GUYUB_2',
+    name: 'GUYUB_2 (Family)',
+    speed: '30 Mbps',
+    speedText: 'Upto 30 MBPS',
+    price: 'Rp 142.000',
+    features: [
+      'Kecepatan Optimal Stabil',
+      'Download / Upload Unlimited',
+      'DUAL BAND 2,4G & 5G'
+    ],
+    isPopular: true
+  },
+  {
+    id: 'GUYUB_3',
+    name: 'GUYUB_3 (Premium)',
+    speed: '50 Mbps',
+    speedText: 'Upto 50 MBPS',
+    price: 'Rp 182.000',
+    features: [
+      'Bandwidth Extra Besar',
+      'Download / Upload Unlimited',
+      'DUAL BAND 2,4G & 5G'
+    ],
+    isPopular: false
+  },
+  {
+    id: 'GUYUB_4',
+    name: 'GUYUB_4 (Super)',
+    speed: '75 Mbps',
+    speedText: 'Upto 75 MBPS',
+    price: 'Rp 260.000',
+    features: [
+      'Bandwidth Super Besar & Stabil',
+      'Download / Upload Unlimited',
+      'DUAL BAND 2,4G & 5G'
+    ],
+    isPopular: false
+  },
+  {
+    id: 'GUYUB_5',
+    name: 'GUYUB_5 (Ultimate)',
+    speed: '100 Mbps',
+    speedText: 'Upto 100 MBPS',
+    price: 'Rp 330.000',
+    features: [
+      'Kecepatan Maksimal Tanpa Batas',
+      'Download / Upload Unlimited',
+      'DUAL BAND 2,4G & 5G'
+    ],
+    isPopular: false
+  }
+];
+
 export default function Home() {
   // State Manajemen Komponen Form Modal & Mobile Drawer
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -280,108 +351,70 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
-              {/* Card 1 */}
-              <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-2 hover:shadow-md hover:border-slate-300 group">
-                <div>
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-base font-bold text-slate-900">GUYUB_1 (Starter)</h3>
-                    <span className="rounded bg-slate-100 px-2.5 py-1 text-xs font-black text-slate-700 transition-colors group-hover:bg-red-50 group-hover:text-red-600">20 MBPS</span>
-                  </div>
-                  <div className="mt-6 border-t border-slate-100 pt-6">
-                    <p className="mt-1 flex items-baseline gap-1">
-                      <span className="text-4xl font-black tracking-tight text-slate-900">Rp 115.000</span>
-                      <span className="text-sm font-semibold text-slate-500">/bln</span>
-                    </p>
-                  </div>
-                  <ul className="mt-8 space-y-4 text-sm font-medium text-slate-600">
-                    <li className="flex items-center gap-3">
-                      <span className="text-red-600 font-bold text-xs">✓</span> Bayar 115.000 Langsung ON
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="text-slate-400 text-xs">✓</span> Download / Upload Unlimited
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="text-slate-400 text-xs">✓</span> DUAL BAND 2,4G & 5G
-                    </li>
-                  </ul>
-                </div>
-                <button
-                  onClick={() => openRegisterModal('GUYUB_1')}
-                  className="mt-8 block w-full rounded-md bg-slate-900 py-3 text-center text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-red-600 cursor-pointer"
-                >
-                  PILIH PAKET & DAFTAR
-                </button>
-              </div>
-
-              {/* Card 2 */}
-              <div className="rounded-2xl border-2 border-red-600 bg-white p-8 shadow-md flex flex-col justify-between relative lg:-top-3 transition-all duration-300 transform hover:-translate-y-3 hover:shadow-xl hover:border-red-700">
-                <div className="absolute -top-3.5 inset-x-0 mx-auto w-max rounded-full bg-red-600 px-4 py-1 text-[10px] font-black text-white uppercase tracking-widest animate-bounce">
-                  POPULER CODES
-                </div>
-                <div>
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-base font-bold text-slate-900">GUYUB_2 (Family)</h3>
-                    <span className="rounded bg-red-600 px-2.5 py-1 text-xs font-black text-white">30 MBPS</span>
-                  </div>
-                  <div className="mt-6 border-t border-slate-100 pt-6">
-                    <p className="mt-1 flex items-baseline gap-1">
-                      <span className="text-4xl font-black tracking-tight text-red-600">Rp 142.000</span>
-                      <span className="text-sm font-semibold text-slate-500">/bln</span>
-                    </p>
-                  </div>
-                  <ul className="mt-8 space-y-4 text-sm font-medium text-slate-600">
-                    <li className="flex items-center gap-3 text-red-600 font-bold">
-                      <span className="text-xs">✓</span> Kecepatan Optimal Stabil
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="text-red-600 text-xs">✓</span> Download / Upload Unlimited
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="text-red-600 text-xs">✓</span> DUAL BAND 2,4G & 5G
-                    </li>
-                  </ul>
-                </div>
-                <button
-                  onClick={() => openRegisterModal('GUYUB_2')}
-                  className="mt-8 block w-full rounded-md bg-red-600 py-3 text-center text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-slate-900 cursor-pointer shadow-md"
-                >
-                  PILIH PAKET & DAFTAR
-                </button>
-              </div>
-
-              {/* Card 3 */}
-              <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-2 hover:shadow-md hover:border-slate-300 group">
-                <div>
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-base font-bold text-slate-900">GUYUB_3 (Premium)</h3>
-                    <span className="rounded bg-slate-100 px-2.5 py-1 text-xs font-black text-slate-700">50 MBPS</span>
-                  </div>
-                  <div className="mt-6 border-t border-slate-100 pt-6">
-                    <p className="mt-1 flex items-baseline gap-1">
-                      <span className="text-3xl font-black tracking-tight text-slate-900">Rp 182.000</span>
-                      <span className="text-sm font-semibold text-slate-500">/bln</span>
-                    </p>
-                  </div>
-                  <ul className="mt-8 space-y-4 text-sm font-medium text-slate-600">
-                    <li className="flex items-center gap-3">
-                      <span className="text-red-600 font-bold text-xs">✓</span> Bandwidth Extra Besar
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="text-slate-400 text-xs">✓</span> Download / Upload Unlimited
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="text-slate-400 text-xs">✓</span> DUAL BAND 2,4G & 5G
-                    </li>
-                  </ul>
-                </div>
-                <button
-                  onClick={() => openRegisterModal('GUYUB_3')}
-                  className="mt-8 block w-full rounded-md bg-slate-900 py-3 text-center text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-red-600 cursor-pointer"
-                >
-                  PILIH PAKET & DAFTAR
-                </button>
-              </div>
+            <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              {internetPackages.map((pkg) => {
+                const isSelected = selectedPackage === pkg.id;
+                return (
+                  <motion.div
+                    key={pkg.id}
+                    onClick={() => setSelectedPackage(pkg.id)}
+                    whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                    className={`rounded-2xl border bg-white p-6 shadow-sm flex flex-col justify-between transition-all duration-300 cursor-pointer relative
+                      ${isSelected 
+                        ? 'border-red-600 border-2 ring-4 ring-red-600/10 shadow-md' 
+                        : 'border-slate-200 hover:shadow-md hover:border-slate-300'
+                      }`}
+                  >
+                    {pkg.isPopular && (
+                      <div className="absolute -top-3.5 inset-x-0 mx-auto w-max rounded-full bg-red-600 px-4 py-1 text-[10px] font-black text-white uppercase tracking-widest flex items-center gap-1 shadow-sm">
+                        🔥 POPULER
+                      </div>
+                    )}
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <h3 className="text-sm font-extrabold text-slate-900 truncate">{pkg.name}</h3>
+                        <span className={`shrink-0 rounded px-2 py-0.5 text-[10px] font-black uppercase tracking-wider
+                          ${pkg.isPopular 
+                            ? 'bg-red-600 text-white' 
+                            : 'bg-slate-100 text-slate-700'
+                          }`}
+                        >
+                          {pkg.speed}
+                        </span>
+                      </div>
+                      <div className="mt-6 border-t border-slate-100 pt-6">
+                        <p className="mt-1 flex items-baseline gap-1">
+                          <span className={`text-2xl sm:text-3xl font-black tracking-tight ${isSelected || pkg.isPopular ? 'text-red-600' : 'text-slate-900'}`}>
+                            {pkg.price}
+                          </span>
+                          <span className="text-xs font-semibold text-slate-500">/bln</span>
+                        </p>
+                      </div>
+                      <ul className="mt-8 space-y-4 text-xs font-medium text-slate-600">
+                        {pkg.features.map((feat, i) => (
+                          <li key={i} className="flex items-center gap-3">
+                            <span className={`${pkg.isPopular || isSelected ? 'text-red-600' : 'text-slate-400'} font-bold text-xs`}>✓</span> 
+                            {feat}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openRegisterModal(pkg.id);
+                      }}
+                      className={`mt-8 block w-full rounded-md py-3 text-center text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-sm
+                        ${isSelected 
+                          ? 'bg-red-600 text-white hover:bg-slate-900' 
+                          : 'bg-slate-900 text-white hover:bg-red-600'
+                        }`}
+                    >
+                      {isSelected ? '✓ DIPILIH' : 'PILIH PAKET'}
+                    </button>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         </section>
@@ -552,6 +585,8 @@ export default function Home() {
                   <option value="GUYUB_1">GUYUB_1 - 20 Mbps (Rp 115.000 / bln)</option>
                   <option value="GUYUB_2">GUYUB_2 - 30 Mbps (Rp 142.000 / bln)</option>
                   <option value="GUYUB_3">GUYUB_3 - 50 Mbps (Rp 182.000 / bln)</option>
+                  <option value="GUYUB_4">GUYUB_4 - 75 Mbps (Rp 260.000 / bln)</option>
+                  <option value="GUYUB_5">GUYUB_5 - 100 Mbps (Rp 330.000 / bln)</option>
                 </select>
               </div>
 
@@ -679,7 +714,7 @@ export default function Home() {
           </div>
           <div className="mt-16 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] font-semibold text-slate-500">
             <p>© 2026 PT AKSES ARTHA MEDIA. All rights reserved.</p>
-            <a href="/admin" className="text-slate-600 hover:text-red-400 transition-colors">🔑 Admin</a>
+            {/* <a href="/admin" className="text-slate-600 hover:text-red-400 transition-colors">🔑 Admin</a> */}
           </div>
         </motion.div>
       </footer>
