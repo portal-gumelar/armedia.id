@@ -53,7 +53,7 @@ const internetPackages = [
     name: 'GUYUB_2 (Family)',
     speed: '30 Mbps',
     speedText: 'Upto 30 MBPS',
-    price: 'Rp 142.000',
+    price: 'Rp 148.000',
     features: [
       'Kecepatan Optimal Stabil',
       'Download / Upload Unlimited',
@@ -583,7 +583,7 @@ export default function Home() {
                   className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-xs font-bold text-slate-900 focus:border-red-600 focus:outline-none"
                 >
                   <option value="GUYUB_1">GUYUB_1 - 20 Mbps (Rp 115.000 / bln)</option>
-                  <option value="GUYUB_2">GUYUB_2 - 30 Mbps (Rp 142.000 / bln)</option>
+                  <option value="GUYUB_2">GUYUB_2 - 30 Mbps (Rp 148.000 / bln)</option>
                   <option value="GUYUB_3">GUYUB_3 - 50 Mbps (Rp 182.000 / bln)</option>
                   <option value="GUYUB_4">GUYUB_4 - 75 Mbps (Rp 260.000 / bln)</option>
                   <option value="GUYUB_5">GUYUB_5 - 100 Mbps (Rp 330.000 / bln)</option>

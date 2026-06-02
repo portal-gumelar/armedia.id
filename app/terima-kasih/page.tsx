@@ -13,7 +13,7 @@ function ThankYouContent() {
 
   const paketNames: Record<string, string> = {
     GUYUB_1: "GUYUB_1 — 20 Mbps (Rp 115.000/bln)",
-    GUYUB_2: "GUYUB_2 — 30 Mbps (Rp 142.000/bln)",
+    GUYUB_2: "GUYUB_2 — 30 Mbps (Rp 148.000/bln)",
     GUYUB_3: "GUYUB_3 — 50 Mbps (Rp 182.000/bln)",
   };
 
