@@ -202,7 +202,7 @@ export default function Home() {
             <button onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setActiveTab('home'); }} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'home' ? 'text-red-600' : 'hover:text-red-600'}`}>HOME</button>
             <button onClick={() => scrollToSection('about-section', 'about')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'about' ? 'text-red-600' : 'hover:text-red-600'}`}>TENTANG KAMI</button>
             <button onClick={() => scrollToSection('services-section', 'services')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'services' ? 'text-red-600' : 'hover:text-red-600'}`}>LAYANAN</button>
-            <button onClick={() => scrollToSection('acr-section', 'acr')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'acr' ? 'text-red-600' : 'hover:text-red-600'}`}>REWARD</button>
+            <button onClick={() => scrollToSection('acr-section', 'acr')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'acr' ? 'text-red-600' : 'hover:text-red-600'}`}>ACR REWARD</button>
             <button onClick={() => scrollToSection('testimonials-section', 'testimonials')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'testimonials' ? 'text-red-600' : 'hover:text-red-600'}`}>TESTIMONI</button>
             <button onClick={() => scrollToSection('blog-section', 'blog')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'blog' ? 'text-red-600' : 'hover:text-red-600'}`}>ARTIKEL & BERITA</button>
           </nav>
@@ -231,7 +231,7 @@ export default function Home() {
             <button onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setIsMobileMenuOpen(false); setActiveTab('home'); }} className="text-left py-2 text-sm font-bold text-red-600">HOME</button>
             <button onClick={() => scrollToSection('about-section', 'about')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">TENTANG KAMI</button>
             <button onClick={() => scrollToSection('services-section', 'services')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">LAYANAN</button>
-            <button onClick={() => scrollToSection('acr-section', 'acr')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">REWARD</button>
+            <button onClick={() => scrollToSection('acr-section', 'acr')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">ACR REWARD</button>
             <button onClick={() => scrollToSection('testimonials-section', 'testimonials')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">TESTIMONI</button>
             <button onClick={() => scrollToSection('blog-section', 'blog')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">ARTIKEL & BERITA</button>
             <a
