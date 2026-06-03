@@ -8,13 +8,15 @@ function ThankYouContent() {
   const searchParams = useSearchParams();
   const [countdown, setCountdown] = useState(10);
 
-  const paket = searchParams.get("paket") || "GUYUB_1";
+  const paket = searchParams.get("paket") || "PAKET_1";
   const nama = searchParams.get("nama") || "Pelanggan";
 
   const paketNames: Record<string, string> = {
-    GUYUB_1: "GUYUB_1 — 20 Mbps (Rp 115.000/bln)",
-    GUYUB_2: "GUYUB_2 — 30 Mbps (Rp 148.000/bln)",
-    GUYUB_3: "GUYUB_3 — 50 Mbps (Rp 182.000/bln)",
+    PAKET_1: "PAKET_1 — 20 Mbps (Rp 115.000/bln)",
+    PAKET_2: "PAKET_2 — 30 Mbps (Rp 148.000/bln)",
+    PAKET_3: "PAKET_3 — 50 Mbps (Rp 182.000/bln)",
+    PAKET_4: "PAKET_4 — 75 Mbps (Rp 260.000/bln)",
+    PAKET_5: "PAKET_5 — 100 Mbps (Rp 330.000/bln)",
   };
 
   useEffect(() => {

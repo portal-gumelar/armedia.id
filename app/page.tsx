@@ -11,6 +11,7 @@ import FomoNotification from '@/src/components/sections/FomoNotification';
 import { motion } from 'framer-motion';
 
 const CoverageSection = dynamic(() => import('@/src/components/sections/Coverage'), { ssr: false });
+import ACRSection from '@/src/components/sections/ACRSection';
 
 /* ─────────────────────────────────────────────
    TYPES
@@ -36,8 +37,8 @@ type Article = {
    ───────────────────────────────────────────── */
 const internetPackages = [
   {
-    id: 'GUYUB_1',
-    name: 'GUYUB_1 (Starter)',
+    id: 'PAKET_1',
+    name: 'PAKET_1 (Starter)',
     speed: '20 Mbps',
     speedText: 'Upto 20 MBPS',
     price: 'Rp 115.000',
@@ -49,8 +50,8 @@ const internetPackages = [
     isPopular: true
   },
   {
-    id: 'GUYUB_2',
-    name: 'GUYUB_2 (Family)',
+    id: 'PAKET_2',
+    name: 'PAKET_2 (Family)',
     speed: '30 Mbps',
     speedText: 'Upto 30 MBPS',
     price: 'Rp 148.000',
@@ -62,8 +63,8 @@ const internetPackages = [
     isPopular: true
   },
   {
-    id: 'GUYUB_3',
-    name: 'GUYUB_3 (Premium)',
+    id: 'PAKET_3',
+    name: 'PAKET_3 (Premium)',
     speed: '50 Mbps',
     speedText: 'Upto 50 MBPS',
     price: 'Rp 182.000',
@@ -75,8 +76,8 @@ const internetPackages = [
     isPopular: false
   },
   {
-    id: 'GUYUB_4',
-    name: 'GUYUB_4 (Super)',
+    id: 'PAKET_4',
+    name: 'PAKET_4 (Super)',
     speed: '75 Mbps',
     speedText: 'Upto 75 MBPS',
     price: 'Rp 260.000',
@@ -88,8 +89,8 @@ const internetPackages = [
     isPopular: false
   },
   {
-    id: 'GUYUB_5',
-    name: 'GUYUB_5 (Ultimate)',
+    id: 'PAKET_5',
+    name: 'PAKET_5 (Ultimate)',
     speed: '100 Mbps',
     speedText: 'Upto 100 MBPS',
     price: 'Rp 330.000',
@@ -106,7 +107,7 @@ export default function Home() {
   // State Manajemen Komponen Form Modal & Mobile Drawer
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState('GUYUB_1');
+  const [selectedPackage, setSelectedPackage] = useState('PAKET_1');
   const [activeTab, setActiveTab] = useState('home');
 
   // Data dari Supabase
@@ -201,6 +202,7 @@ export default function Home() {
             <button onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setActiveTab('home'); }} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'home' ? 'text-red-600' : 'hover:text-red-600'}`}>HOME</button>
             <button onClick={() => scrollToSection('about-section', 'about')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'about' ? 'text-red-600' : 'hover:text-red-600'}`}>TENTANG KAMI</button>
             <button onClick={() => scrollToSection('services-section', 'services')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'services' ? 'text-red-600' : 'hover:text-red-600'}`}>LAYANAN</button>
+            <button onClick={() => scrollToSection('acr-section', 'acr')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'acr' ? 'text-red-600' : 'hover:text-red-600'}`}>REWARD</button>
             <button onClick={() => scrollToSection('testimonials-section', 'testimonials')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'testimonials' ? 'text-red-600' : 'hover:text-red-600'}`}>TESTIMONI</button>
             <button onClick={() => scrollToSection('blog-section', 'blog')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'blog' ? 'text-red-600' : 'hover:text-red-600'}`}>ARTIKEL & BERITA</button>
           </nav>
@@ -229,6 +231,7 @@ export default function Home() {
             <button onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setIsMobileMenuOpen(false); setActiveTab('home'); }} className="text-left py-2 text-sm font-bold text-red-600">HOME</button>
             <button onClick={() => scrollToSection('about-section', 'about')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">TENTANG KAMI</button>
             <button onClick={() => scrollToSection('services-section', 'services')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">LAYANAN</button>
+            <button onClick={() => scrollToSection('acr-section', 'acr')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">REWARD</button>
             <button onClick={() => scrollToSection('testimonials-section', 'testimonials')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">TESTIMONI</button>
             <button onClick={() => scrollToSection('blog-section', 'blog')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">ARTIKEL & BERITA</button>
             <a
@@ -271,7 +274,7 @@ export default function Home() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => openRegisterModal('GUYUB_1')}
+                onClick={() => openRegisterModal('PAKET_1')}
                 className="rounded-md bg-red-600 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-red-600/10 transition-all duration-300 hover:bg-slate-900 hover:shadow-xl cursor-pointer"
               >
                 MULAI DAFTAR SEKARANG
@@ -466,6 +469,9 @@ export default function Home() {
           </motion.div>
         </section>
 
+        {/* ================= 5.5. REWARD SECTION ================= */}
+        <ACRSection />
+
         {/* ================= 6. TESTIMONI SECTION ================= */}
         <section id="testimonials-section" className="bg-slate-50 py-24 border-t border-b border-slate-100 scroll-mt-20">
           <motion.div 
@@ -582,11 +588,11 @@ export default function Home() {
                   onChange={(e) => setSelectedPackage(e.target.value)}
                   className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-xs font-bold text-slate-900 focus:border-red-600 focus:outline-none"
                 >
-                  <option value="GUYUB_1">GUYUB_1 - 20 Mbps (Rp 115.000 / bln)</option>
-                  <option value="GUYUB_2">GUYUB_2 - 30 Mbps (Rp 148.000 / bln)</option>
-                  <option value="GUYUB_3">GUYUB_3 - 50 Mbps (Rp 182.000 / bln)</option>
-                  <option value="GUYUB_4">GUYUB_4 - 75 Mbps (Rp 260.000 / bln)</option>
-                  <option value="GUYUB_5">GUYUB_5 - 100 Mbps (Rp 330.000 / bln)</option>
+                  <option value="PAKET_1">PAKET_1 - 20 Mbps (Rp 115.000 / bln)</option>
+                  <option value="PAKET_2">PAKET_2 - 30 Mbps (Rp 148.000 / bln)</option>
+                  <option value="PAKET_3">PAKET_3 - 50 Mbps (Rp 182.000 / bln)</option>
+                  <option value="PAKET_4">PAKET_4 - 75 Mbps (Rp 260.000 / bln)</option>
+                  <option value="PAKET_5">PAKET_5 - 100 Mbps (Rp 330.000 / bln)</option>
                 </select>
               </div>
 
