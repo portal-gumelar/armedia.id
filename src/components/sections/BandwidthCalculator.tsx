@@ -38,27 +38,27 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
   };
 
   const Counter = ({ label, desc, value, setter }: { label: string, desc: string, value: number, setter: React.Dispatch<React.SetStateAction<number>> }) => (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-white transition-colors gap-4 sm:gap-2">
-      <div>
-        <p className="text-sm font-bold text-slate-900">{label}</p>
-        <p className="text-[10px] text-slate-500 font-medium mt-1">{desc}</p>
+    <div className="flex items-center justify-between p-3 sm:p-4 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-white transition-colors gap-2">
+      <div className="flex-1">
+        <p className="text-sm font-bold text-slate-900 leading-tight">{label}</p>
+        <p className="text-[10px] text-slate-500 font-medium mt-0.5 leading-tight">{desc}</p>
       </div>
-      <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-lg p-1 shadow-sm shrink-0 w-fit">
-        <button onClick={() => handleDecrement(setter)} className="w-8 h-8 flex items-center justify-center rounded-md bg-slate-50 text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-colors font-bold cursor-pointer">-</button>
-        <span className="w-6 text-center text-sm font-black text-slate-900">{value}</span>
-        <button onClick={() => handleIncrement(setter)} className="w-8 h-8 flex items-center justify-center rounded-md bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition-colors font-bold cursor-pointer">+</button>
+      <div className="flex items-center gap-2 sm:gap-3 bg-white border border-slate-200 rounded-lg p-1 shadow-sm shrink-0">
+        <button onClick={() => handleDecrement(setter)} className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md bg-slate-50 text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-colors font-bold cursor-pointer">-</button>
+        <span className="w-5 sm:w-6 text-center text-sm font-black text-slate-900">{value}</span>
+        <button onClick={() => handleIncrement(setter)} className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition-colors font-bold cursor-pointer">+</button>
       </div>
     </div>
   );
 
   return (
-    <section id="bandwidth-calculator" className="mx-auto max-w-7xl px-6 py-24 lg:px-8 border-t border-slate-100 scroll-mt-20">
+    <section id="bandwidth-calculator" className="mx-auto max-w-7xl px-4 sm:px-6 py-12 lg:py-24 lg:px-8 border-t border-slate-100 scroll-mt-20">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
-        className="grid grid-cols-1 lg:grid-cols-12 gap-12"
+        className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12"
       >
         <div className="lg:col-span-5 flex flex-col justify-center">
           <span className="text-xs font-bold uppercase tracking-widest text-red-600">EDUKASI BANDWIDTH</span>
@@ -98,26 +98,26 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
             </div>
           </div>
           
-          <div className="bg-slate-900 p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-slate-800">
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Total Kebutuhan Bandwidth</p>
-              <div className="mt-1 flex items-baseline gap-2 text-white">
-                <span className="text-3xl font-black">{result.min} - {result.max}</span>
-                <span className="text-sm font-bold text-slate-400">Mbps</span>
+          <div className="bg-slate-900 p-5 md:p-8 flex flex-row items-center justify-between gap-4 border-t border-slate-800">
+            <div className="flex-1">
+              <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">Total Kebutuhan</p>
+              <div className="mt-0.5 flex items-baseline gap-1.5 text-white">
+                <span className="text-2xl sm:text-3xl font-black">{result.min}-{result.max}</span>
+                <span className="text-[10px] sm:text-sm font-bold text-slate-400">Mbps</span>
               </div>
             </div>
-            <div className="w-full sm:w-auto text-center sm:text-right">
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Rekomendasi Paket</p>
-              <div className="mt-1 flex flex-col sm:items-end items-center gap-2">
-                <div className="inline-block bg-red-600 px-6 py-2 rounded-lg text-white font-black text-xl shadow-lg shadow-red-600/20">
+            <div className="text-right">
+              <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Rekomendasi</p>
+              <div className="flex flex-col items-end gap-1.5">
+                <div className="inline-block bg-red-600 px-3 py-1.5 sm:px-6 sm:py-2 rounded-lg text-white font-black text-sm sm:text-xl shadow-lg shadow-red-600/20">
                   {result.recommended}
                 </div>
                 {result.recommendedId && onSelectPackage && (
                   <button 
                     onClick={() => onSelectPackage(result.recommendedId)}
-                    className="text-[10px] font-bold bg-white text-slate-900 px-4 py-1.5 rounded-md hover:bg-slate-200 transition-colors uppercase tracking-wider cursor-pointer shadow-sm w-full sm:w-auto"
+                    className="text-[9px] sm:text-[10px] font-bold bg-white text-slate-900 px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-md hover:bg-slate-200 transition-colors uppercase tracking-wider cursor-pointer shadow-sm"
                   >
-                    Pilih Paket Ini →
+                    Pilih Paket →
                   </button>
                 )}
               </div>
