@@ -12,6 +12,7 @@ import { motion } from 'framer-motion';
 
 const CoverageSection = dynamic(() => import('@/src/components/sections/Coverage'), { ssr: false });
 import ACRSection from '@/src/components/sections/ACRSection';
+import BandwidthCalculator from '@/src/components/sections/BandwidthCalculator';
 
 /* ─────────────────────────────────────────────
    TYPES
@@ -163,7 +164,7 @@ export default function Home() {
 
   // Handler interaksi paket & registrasi otomatis ke portal baru
   const openRegisterModal = (paket: string) => {
-    window.location.href = 'https://gumelar.armedia.id/';
+    window.location.href = `https://gumelar.armedia.id/?paket=${paket}`;
   };
 
   // Handler smooth scroll navigasi internal
@@ -337,6 +338,13 @@ export default function Home() {
             </div>
           </motion.div>
         </section>
+
+        {/* ================= 3.5. KALKULATOR BANDWIDTH SECTION ================= */}
+        <BandwidthCalculator onSelectPackage={(pkgId) => {
+          setSelectedPackage(pkgId);
+          const el = document.getElementById('services-section');
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }} />
 
         {/* ================= 4. VALUE PLANS / LAYANAN SECTION (Elevating Cards) ================= */}
         <section id="services-section" className="bg-slate-50 py-24 border-t border-slate-100 scroll-mt-20">
