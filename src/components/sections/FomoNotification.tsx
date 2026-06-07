@@ -112,31 +112,32 @@ export default function FomoNotification() {
 
   return (
     <div
-      className={`fixed z-40 bottom-20 right-4 md:bottom-6 md:right-6 max-w-[92vw] md:max-w-xs transition-all duration-500 ease-out ${
+      className={`fixed z-40 bottom-16 left-4 md:bottom-6 md:left-auto md:right-6 max-w-[65vw] md:max-w-xs transition-all duration-500 ease-out ${
         visible
           ? "translate-y-0 opacity-100 scale-100"
           : "translate-y-4 opacity-0 scale-95 pointer-events-none"
       }`}
     >
-      <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white/95 backdrop-blur-md p-3.5 shadow-xl shadow-slate-900/10">
-        <div className="flex-shrink-0 h-9 w-9 rounded-full bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-white text-xs font-bold uppercase shadow-sm shadow-red-500/20">
+      <div className="flex items-start gap-2 md:gap-3 rounded-xl border border-slate-200 bg-white/95 backdrop-blur-md p-2 md:p-3.5 shadow-xl shadow-slate-900/10">
+        <div className="flex-shrink-0 h-7 w-7 md:h-9 md:w-9 rounded-full bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-white text-[10px] md:text-xs font-bold uppercase shadow-sm shadow-red-500/20">
           {entry.name.charAt(0)}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-[11px] font-semibold text-slate-800 leading-tight truncate">
+          <p className="text-[10px] md:text-[11px] font-semibold text-slate-800 leading-tight truncate">
             {entry.name}
           </p>
-          <p className="text-[10px] text-slate-500 leading-snug mt-0.5">
+          <p className="text-[8.5px] md:text-[10px] text-slate-500 leading-snug mt-0.5">
             dari <span className="font-semibold text-slate-700">{entry.city}</span>{" "}
-            {entry.action}
+            <span className="hidden md:inline">{entry.action}</span>
+            <span className="md:hidden">{entry.action.replace("baru saja ", "")}</span>
           </p>
-          <p className="text-[9px] text-slate-400 mt-1">
-            Baru saja • {minutesAgo} menit yang lalu
+          <p className="text-[8px] md:text-[9px] text-slate-400 mt-0.5 md:mt-1">
+            Baru saja • {minutesAgo} mnt lalu
           </p>
         </div>
         <button
           onClick={() => setVisible(false)}
-          className="flex-shrink-0 h-5 w-5 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors text-[10px] leading-none"
+          className="flex-shrink-0 h-4 w-4 md:h-5 md:w-5 mt-0.5 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors text-[8px] md:text-[10px] leading-none"
         >
           ✕
         </button>
