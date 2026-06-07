@@ -40,9 +40,9 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
   const Counter = ({ label, desc, value, setter }: { label: string, desc: string, value: number, setter: React.Dispatch<React.SetStateAction<number>> }) => (
     <div className="flex items-center p-3 sm:p-4 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-white transition-colors gap-3 sm:gap-4">
       <div className="flex items-center gap-2 sm:gap-3 bg-white border border-slate-200 rounded-lg p-1 shadow-sm shrink-0">
-        <button onClick={() => handleDecrement(setter)} className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md bg-slate-50 text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-colors font-bold cursor-pointer">-</button>
-        <span className="w-5 sm:w-6 text-center text-sm font-black text-slate-900">{value}</span>
-        <button onClick={() => handleIncrement(setter)} className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition-colors font-bold cursor-pointer">+</button>
+        <motion.button whileTap={{ scale: 0.85 }} onClick={() => handleDecrement(setter)} className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md bg-slate-50 text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-colors font-bold cursor-pointer">-</motion.button>
+        <motion.span key={value} initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="w-5 sm:w-6 text-center text-sm font-black text-slate-900 inline-block">{value}</motion.span>
+        <motion.button whileTap={{ scale: 0.85 }} onClick={() => handleIncrement(setter)} className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition-colors font-bold cursor-pointer">+</motion.button>
       </div>
       <div className="flex-1">
         <p className="text-sm font-bold text-slate-900 leading-tight">{label}</p>
@@ -81,7 +81,7 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
           </div>
         </div>
 
-        <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden flex flex-col">
+        <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden flex flex-col">
           <div className="p-6 md:p-8 flex-1 space-y-4">
             <h3 className="text-sm font-black uppercase tracking-widest text-slate-900 mb-4 border-b border-slate-100 pb-2">1. Smartphone / Gadget</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -100,23 +100,31 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
           
           <div className="bg-slate-900 p-6 md:p-10 flex flex-col items-center text-center border-t border-slate-800">
             <p className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-400 mb-1">
-              Total Kebutuhan: {result.min} - {result.max} Mbps
+              Total Kebutuhan: <motion.span key={`${result.min}-${result.max}`} initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="inline-block text-white mx-1">{result.min} - {result.max}</motion.span> Mbps
             </p>
             <p className="text-xs sm:text-sm font-medium text-slate-500 mb-5">
               Rekomendasi Paket Ideal Untuk Anda:
             </p>
             
-            <div className="inline-block bg-gradient-to-r from-red-600 to-orange-600 px-8 py-3 sm:px-12 sm:py-4 rounded-2xl text-white font-black text-3xl sm:text-5xl shadow-xl shadow-red-600/20 mb-6">
+            <motion.div 
+              key={result.recommended}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              className="inline-block bg-gradient-to-r from-red-600 to-orange-600 px-8 py-3 sm:px-12 sm:py-4 rounded-2xl text-white font-black text-3xl sm:text-5xl shadow-xl shadow-red-600/20 mb-6"
+            >
               {result.recommended}
-            </div>
+            </motion.div>
 
             {result.recommendedId && onSelectPackage && (
-              <button 
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => onSelectPackage(result.recommendedId)}
-                className="font-black bg-white text-slate-900 px-8 py-3.5 sm:py-4 rounded-xl hover:bg-slate-200 transition-all uppercase tracking-widest shadow-lg text-xs sm:text-sm w-full max-w-[300px]"
+                className="font-black bg-white text-slate-900 px-8 py-3.5 sm:py-4 rounded-xl hover:bg-slate-200 transition-all uppercase tracking-widest shadow-lg shadow-white/10 text-xs sm:text-sm w-full max-w-[300px]"
               >
                 Pilih Paket Sekarang
-              </button>
+              </motion.button>
             )}
           </div>
         </div>
