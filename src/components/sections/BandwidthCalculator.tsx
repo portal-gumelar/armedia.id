@@ -38,15 +38,15 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
   };
 
   const Counter = ({ label, desc, value, setter }: { label: string, desc: string, value: number, setter: React.Dispatch<React.SetStateAction<number>> }) => (
-    <div className="flex items-center justify-between p-3 sm:p-4 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-white transition-colors gap-2">
-      <div className="flex-1">
-        <p className="text-sm font-bold text-slate-900 leading-tight">{label}</p>
-        <p className="text-[10px] text-slate-500 font-medium mt-0.5 leading-tight">{desc}</p>
-      </div>
+    <div className="flex items-center p-3 sm:p-4 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-white transition-colors gap-3 sm:gap-4">
       <div className="flex items-center gap-2 sm:gap-3 bg-white border border-slate-200 rounded-lg p-1 shadow-sm shrink-0">
         <button onClick={() => handleDecrement(setter)} className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md bg-slate-50 text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-colors font-bold cursor-pointer">-</button>
         <span className="w-5 sm:w-6 text-center text-sm font-black text-slate-900">{value}</span>
         <button onClick={() => handleIncrement(setter)} className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition-colors font-bold cursor-pointer">+</button>
+      </div>
+      <div className="flex-1">
+        <p className="text-sm font-bold text-slate-900 leading-tight">{label}</p>
+        <p className="text-[10px] text-slate-500 font-medium mt-0.5 leading-tight">{desc}</p>
       </div>
     </div>
   );
