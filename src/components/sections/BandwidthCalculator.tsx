@@ -98,30 +98,26 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
             </div>
           </div>
           
-          <div className="bg-slate-900 p-5 md:p-8 flex flex-row items-center justify-between gap-4 border-t border-slate-800">
-            <div className="flex-1">
-              <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">Total Kebutuhan</p>
-              <div className="mt-0.5 flex items-baseline gap-1.5 text-white">
-                <span className="text-2xl sm:text-3xl font-black">{result.min}-{result.max}</span>
-                <span className="text-[10px] sm:text-sm font-bold text-slate-400">Mbps</span>
-              </div>
+          <div className="bg-slate-900 p-6 md:p-10 flex flex-col items-center text-center border-t border-slate-800">
+            <p className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-400 mb-1">
+              Total Kebutuhan: {result.min} - {result.max} Mbps
+            </p>
+            <p className="text-xs sm:text-sm font-medium text-slate-500 mb-5">
+              Rekomendasi Paket Ideal Untuk Anda:
+            </p>
+            
+            <div className="inline-block bg-gradient-to-r from-red-600 to-orange-600 px-8 py-3 sm:px-12 sm:py-4 rounded-2xl text-white font-black text-3xl sm:text-5xl shadow-xl shadow-red-600/20 mb-6">
+              {result.recommended}
             </div>
-            <div className="text-right">
-              <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Rekomendasi</p>
-              <div className="flex flex-col items-end gap-1.5">
-                <div className="inline-block bg-red-600 px-3 py-1.5 sm:px-6 sm:py-2 rounded-lg text-white font-black text-sm sm:text-xl shadow-lg shadow-red-600/20">
-                  {result.recommended}
-                </div>
-                {result.recommendedId && onSelectPackage && (
-                  <button 
-                    onClick={() => onSelectPackage(result.recommendedId)}
-                    className="text-[9px] sm:text-[10px] font-bold bg-white text-slate-900 px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-md hover:bg-slate-200 transition-colors uppercase tracking-wider cursor-pointer shadow-sm"
-                  >
-                    Pilih Paket →
-                  </button>
-                )}
-              </div>
-            </div>
+
+            {result.recommendedId && onSelectPackage && (
+              <button 
+                onClick={() => onSelectPackage(result.recommendedId)}
+                className="font-black bg-white text-slate-900 px-8 py-3.5 sm:py-4 rounded-xl hover:bg-slate-200 transition-all uppercase tracking-widest shadow-lg text-xs sm:text-sm w-full max-w-[300px]"
+              >
+                Pilih Paket Sekarang
+              </button>
+            )}
           </div>
         </div>
       </motion.div>
