@@ -7,8 +7,9 @@ import DashboardTab from "@/src/components/admin/DashboardTab";
 import ArticlesTab from "@/src/components/admin/ArticlesTab";
 import TestimonialsTab from "@/src/components/admin/TestimonialsTab";
 import RegistrationsTab from "@/src/components/admin/RegistrationsTab";
+import AcrTab from "@/src/components/admin/AcrTab";
 
-type TabKey = "dashboard" | "articles" | "testimonials" | "registrations";
+type TabKey = "dashboard" | "articles" | "testimonials" | "registrations" | "acr";
 
 /* ──────────────── MAIN ──────────────── */
 export default function AdminPage() {
@@ -84,6 +85,7 @@ function AdminDashboard() {
     articles: "📄 Manajemen Artikel",
     testimonials: "⭐ Manajemen Testimoni",
     registrations: "📋 Data Pendaftaran",
+    acr: "🏆 ACR Reward Management",
   };
 
   return (
@@ -113,6 +115,7 @@ function AdminDashboard() {
           {tab === "articles" && <ArticlesTab />}
           {tab === "testimonials" && <TestimonialsTab />}
           {tab === "registrations" && <RegistrationsTab />}
+          {tab === "acr" && <AcrTab />}
         </main>
       </div>
     </div>

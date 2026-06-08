@@ -56,9 +56,20 @@ function FitBounds() {
 }
 
 export default function LeafletMap() {
+  const [map, setMap] = React.useState<L.Map | null>(null);
+
+  React.useEffect(() => {
+    return () => {
+      if (map) {
+        map.remove();
+      }
+    };
+  }, [map]);
+
   return (
     <MapContainer
       center={[-2.5, 118]}
+      ref={setMap}
       zoom={5}
       scrollWheelZoom={true}
       style={{ height: "100%", width: "100%" }}

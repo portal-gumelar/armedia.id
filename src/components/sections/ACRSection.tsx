@@ -77,17 +77,20 @@ export default function ACRSection() {
               </p>
             </motion.div>
             
-            <motion.h3 
+            <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-lg font-black text-slate-900 mt-2 flex items-center gap-2"
+              className="mt-6 mb-4"
             >
-              <span className="text-xl">🏆</span> Keuntungan Menjadi Member Armedia Community Reward
-            </motion.h3>
+              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-lg shadow-slate-900/20 border border-slate-700">
+                <span className="text-xl">🏆</span>
+                <h3 className="text-xs font-black tracking-widest uppercase">Keuntungan Member ACR</h3>
+              </div>
+            </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {benefits.map((benefit, index) => (
                 <motion.div 
                   key={index}
@@ -95,17 +98,20 @@ export default function ACRSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.05 }}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 relative overflow-hidden group cursor-default"
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  className="bg-white/80 backdrop-blur-md rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-xl hover:shadow-slate-200 hover:border-slate-300 transition-all duration-500 relative overflow-hidden group cursor-default"
                 >
-                  <div className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${benefit.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
-                  <div className="flex flex-col gap-3">
-                    <div className={`flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br ${benefit.color} bg-opacity-10 flex items-center justify-center text-xl shadow-inner`}>
-                      {benefit.icon}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`}></div>
+                  
+                  <div className="flex items-start gap-4 relative z-10">
+                    <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${benefit.color} flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
+                      <span className="drop-shadow-md">{benefit.icon}</span>
                     </div>
-                    <p className="text-slate-700 text-sm font-medium leading-relaxed group-hover:text-slate-900 transition-colors">
-                      {benefit.text}
-                    </p>
+                    <div className="flex-1 flex items-center h-12">
+                      <p className="text-slate-700 text-sm font-bold leading-snug group-hover:text-slate-900 transition-colors">
+                        {benefit.text}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               ))}

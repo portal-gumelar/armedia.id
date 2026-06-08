@@ -2,7 +2,7 @@
 
 import React from "react";
 
-type TabKey = "dashboard" | "articles" | "testimonials" | "registrations";
+type TabKey = "dashboard" | "articles" | "testimonials" | "registrations" | "acr";
 
 type Props = {
   tab: TabKey;
@@ -15,6 +15,7 @@ type Props = {
 const menuItems: { key: TabKey; label: string; icon: string }[] = [
   { key: "dashboard", label: "📊 Dashboard", icon: "📊" },
   { key: "registrations", label: "📋 Pendaftaran", icon: "📋" },
+  { key: "acr", label: "🏆 ACR Reward", icon: "🏆" },
   { key: "articles", label: "📄 Artikel", icon: "📄" },
   { key: "testimonials", label: "⭐ Testimoni", icon: "⭐" },
 ];

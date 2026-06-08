@@ -112,7 +112,7 @@ export default function FomoNotification() {
 
   return (
     <div
-      className={`fixed z-40 bottom-6 left-4 md:bottom-6 md:left-auto md:right-6 transition-all duration-500 ease-out ${
+      className={`fixed z-40 bottom-28 left-4 md:bottom-6 md:left-auto md:right-6 transition-all duration-500 ease-out ${
         visible
           ? "translate-y-0 opacity-100 scale-100"
           : "translate-y-4 opacity-0 scale-95 pointer-events-none"
