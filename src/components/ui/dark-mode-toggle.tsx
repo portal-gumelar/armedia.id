@@ -13,11 +13,16 @@ export default function DarkModeToggle() {
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    if (stored === "dark") {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    
+    if (stored === "dark" || (!stored && prefersDark)) {
       document.documentElement.classList.add("dark");
-      setTimeout(() => {
-        setIsDark(true);
-      }, 0);
+      setIsDark(true);
+      if (!stored) localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      setIsDark(false);
+      if (!stored) localStorage.setItem("theme", "light");
     }
   }, []);
 
