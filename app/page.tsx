@@ -268,7 +268,7 @@ export default function Home() {
               Jembatan Digital <br />
               <span className="text-red-600">Masa Depan</span>
             </h1>
-            <p className="mt-6 text-base leading-relaxed text-slate-600 max-w-xl text-justify md:text-left">
+            <p className="mt-6 text-base leading-relaxed text-slate-600 max-w-xl text-justify">
               Solusi internet Fiber Optic dan VSAT terbaik untuk mengakselerasi digitalisasi bisnis Anda. Kami percaya bahwa akses internet yang stabil dan cepat adalah fondasi utama dalam percepatan digitalisasi di Indonesia.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-6">
@@ -328,7 +328,7 @@ export default function Home() {
                 <span className="animate-bounce">🚀</span>
               </p>
             </div>
-            <div className="lg:col-span-2 space-y-6 text-base leading-relaxed text-slate-600 font-medium text-justify md:text-left">
+            <div className="lg:col-span-2 space-y-6 text-base leading-relaxed text-slate-600 font-medium text-justify">
               <p>
                 PT AKSES ARTHA MEDIA atau ARMEDIA adalah perusahaan penyedia layanan internet (ISP) yang berkomitmen untuk menghadirkan konektivitas tanpa batas bagi masyarakat dan pelaku usaha. Kami percaya bahwa akses internet yang stabil dan cepat adalah fondasi utama dalam percepatan digitalisasi di Indonesia.
               </p>
@@ -699,7 +699,7 @@ export default function Home() {
                   className="h-10 w-auto object-contain brightness-0 invert"
                 />
               </a>
-              <p className="text-xs text-slate-400 leading-relaxed text-justify md:text-left">
+              <p className="text-xs text-slate-400 leading-relaxed text-justify">
                 PT AKSES ARTHA MEDIA adalah perusahaan penyedia layanan internet (ISP) berlisensi resmi yang berkomitmen menghadirkan konektivitas tanpa batas bagi masyarakat dan pelaku usaha.
               </p>
             </div>
@@ -717,7 +717,7 @@ export default function Home() {
               <div className="space-y-4 text-xs text-slate-400">
                 <div>
                   <p className="font-bold text-slate-300">Email Dukungan Layanan:</p>
-                  <p className="mt-0.5 font-mono text-red-400">care@aksesartamedia.id</p>
+                  <p className="mt-0.5 font-mono text-red-400">admin@armedia.id</p>
                 </div>
                 <div>
                   <p className="font-bold text-slate-300">Nomor Telepon Kantor (Office):</p>

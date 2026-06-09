@@ -75,7 +75,7 @@ const jsonLd = {
     "Penyedia layanan internet Fiber Optic dan VSAT untuk rumah, kantor, dan UMKM di Gumelar, Banyumas.",
   url: "https://armedia.id",
   telephone: "+62212247-2319",
-  email: "care@aksesartamedia.id",
+  email: "admin@armedia.id",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Gumelar",
