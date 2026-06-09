@@ -53,7 +53,7 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
           <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
             Kalkulator Kebutuhan <span className="text-red-600">Internet</span>
           </h2>
-          <p className="mt-6 text-sm leading-relaxed text-slate-600 font-medium">
+          <p className="mt-6 text-sm leading-relaxed text-slate-600 font-medium text-justify">
             Banyak pelanggan mengira internet lambat selalu karena Mbps kecil. Padahal, jumlah perangkat aktif dan jenis aktivitas (seperti Live Streaming atau Smart TV) sangat mempengaruhi penggunaan bandwidth. Hitung kebutuhan ideal Anda sekarang!
           </p>
           

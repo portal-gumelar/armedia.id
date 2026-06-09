@@ -53,7 +53,7 @@ export default function ACRSection() {
           <h2 className="mt-2 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl md:text-6xl drop-shadow-sm">
             Armedia Community <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-orange-500 to-red-500">Reward</span> (ACR)
           </h2>
-          <p className="mt-6 text-base leading-relaxed text-slate-600 max-w-4xl mx-auto">
+          <p className="mt-6 text-base leading-relaxed text-slate-600 max-w-4xl mx-auto text-justify">
             Adalah program loyalitas pelanggan yang dirancang sebagai bentuk penghargaan kepada seluruh pelanggan setia Armedia. Melalui program ini, setiap pelanggan yang aktif berlangganan dan melakukan pembayaran tagihan akan mendapatkan poin reward yang dapat dikumpulkan dan ditukarkan dengan berbagai hadiah menarik.
           </p>
         </motion.div>
@@ -69,10 +69,10 @@ export default function ACRSection() {
               transition={{ duration: 0.5 }}
               className="text-slate-600 text-sm md:text-base leading-relaxed bg-white/60 p-6 rounded-2xl border border-slate-100/50 shadow-sm backdrop-blur-sm space-y-4"
             >
-              <p>
+              <p className="text-justify">
                 Semakin lama menjadi pelanggan dan semakin disiplin dalam melakukan pembayaran, semakin banyak poin yang akan diperoleh. Poin tersebut dapat ditukarkan dengan berbagai pilihan reward seperti Voucher BBM, Potongan tagihan internet, Pulsa, Paket data, Merchandise eksklusif Armedia, hingga kesempatan mengikuti Program undian berhadiah.
               </p>
-              <p>
+              <p className="text-justify">
                 Program ini hadir sebagai wujud komitmen Armedia untuk tidak hanya menyediakan layanan internet yang stabil dan terjangkau, tetapi juga memberikan nilai tambah bagi pelanggan melalui berbagai keuntungan yang dapat dinikmati secara langsung.
               </p>
             </motion.div>
