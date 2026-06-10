@@ -51,7 +51,7 @@ function ThankYouContent() {
         <h1 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
           Terima Kasih, {nama}!
         </h1>
-        <p className="mt-4 text-base text-slate-600 leading-relaxed text-justify">
+        <p className="mt-4 text-base text-slate-600 leading-relaxed text-center">
           Pendaftaran paket{" "}
           <span className="font-bold text-red-600">
             {paketNames[paket] || paket}
