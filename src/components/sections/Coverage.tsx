@@ -75,7 +75,7 @@ export default function CoverageSection() {
               <span className="text-red-600">Network Coverage</span>
             </h2>
 
-            <p className="mt-5 max-w-md text-base leading-7 text-slate-600">
+            <p className="mt-5 max-w-md text-base leading-7 text-slate-600 text-justify">
               Kami terus memperluas jangkauan infrastruktur fiber optic ke berbagai wilayah di Indonesia. Cek ketersediaan layanan di lokasi Anda sekarang dan rasakan koneksi internet super cepat tanpa hambatan.
             </p>
 
