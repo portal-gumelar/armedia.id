@@ -104,6 +104,57 @@ export default function RegistrationsTab() {
     toast("success", "CSV berhasil di-export");
   };
 
+  const handleSyncSheets = async () => {
+    if (!confirm("Sinkronisasi akan mengambil semua data dari Google Sheets lama ke database. Lanjutkan?")) return;
+    setLoading(true);
+    try {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbysJJibkHgTnACVYXaYCwG1R4JnnQHuxe8tmvEuHWqLjJ0s0bN1DtQuc5_9uv9gOw6EEw/exec");
+      const data = await res.json();
+      
+      let syncedCount = 0;
+      for (const row of data) {
+        const mapped = {
+          paket: String(row["Paket"] || ""),
+          langganan_sebelumnya: String(row["Provider Saat Ini"] || "Belum Pernah Pasang"),
+          nama: String(row["Nama Lengkap"] || "Tanpa Nama"),
+          whatsapp: String(row["No HP / WA"] || ""),
+          kecamatan: String(row["Kecamatan"] || "GUMELAR"),
+          desa: String(row["Desa"] || ""),
+          alamat: String(row["Alamat Pemasangan"] || ""),
+          tanggal_pemasangan: String(row["Tanggal Rencana Pasang"] || "Secepatnya"),
+          waktu_survei: String(row["Waktu Survei"] || "Pagi (08:00 - 11:00)"),
+          status: row["Status"] === "AKTIF" ? "terpasang" : 
+                  row["Status"] === "BATAL" ? "batal" : 
+                  "baru",
+          created_at: row["Timestamp"] && !isNaN(new Date(row["Timestamp"]).getTime()) 
+                        ? new Date(row["Timestamp"]).toISOString() 
+                        : new Date().toISOString()
+        };
+
+        const { data: existing } = await supabase
+          .from("registrations")
+          .select("id")
+          .eq("whatsapp", mapped.whatsapp)
+          .eq("nama", mapped.nama)
+          .maybeSingle();
+
+        if (existing) {
+          await supabase.from("registrations").update(mapped).eq("id", existing.id);
+        } else {
+          await supabase.from("registrations").insert([mapped]);
+        }
+        syncedCount++;
+      }
+      
+      toast("success", `Berhasil sinkronisasi ${syncedCount} data dari Google Sheets!`);
+      fetchRegistrations(); // Reload data
+    } catch (err: any) {
+      console.error(err);
+      toast("error", "Gagal sinkronisasi data dari Google Sheets");
+      setLoading(false);
+    }
+  };
+
   const filtered = registrations.filter((r) => {
     const matchSearch =
       r.nama.toLowerCase().includes(search.toLowerCase()) ||
@@ -135,9 +186,16 @@ export default function RegistrationsTab() {
             {registrations.length} pendaftar
           </span>
         </div>
-        <button
-          onClick={handleExportCsv}
-          className="rounded-lg bg-emerald-600 px-5 py-2 text-xs font-bold uppercase text-white hover:bg-emerald-700 transition-all cursor-pointer whitespace-nowrap"
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handleSyncSheets}
+            className="rounded-lg border border-slate-300 bg-white px-5 py-2 text-xs font-bold uppercase text-slate-700 hover:bg-slate-50 transition-all cursor-pointer whitespace-nowrap"
+          >
+            🔄 Sync Google Sheets
+          </button>
+          <button
+            onClick={handleExportCsv}
+            className="rounded-lg bg-emerald-600 px-5 py-2 text-xs font-bold uppercase text-white hover:bg-emerald-700 transition-all cursor-pointer whitespace-nowrap"
         >
           📥 Export CSV
         </button>
