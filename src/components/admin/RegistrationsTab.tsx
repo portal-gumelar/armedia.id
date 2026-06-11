@@ -196,9 +196,10 @@ export default function RegistrationsTab() {
           <button
             onClick={handleExportCsv}
             className="rounded-lg bg-emerald-600 px-5 py-2 text-xs font-bold uppercase text-white hover:bg-emerald-700 transition-all cursor-pointer whitespace-nowrap"
-        >
-          📥 Export CSV
-        </button>
+          >
+            📥 Export CSV
+          </button>
+        </div>
       </div>
 
       {/* Filters */}

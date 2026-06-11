@@ -41,7 +41,7 @@ export default function AcrTab() {
       if (rewardsRes.data) setRewards(rewardsRes.data);
     } catch (error) {
       console.error(error);
-      toast.error("Gagal mengambil data ACR.");
+      toast("error", "Gagal mengambil data ACR.");
     } finally {
       setIsLoading(false);
     }
