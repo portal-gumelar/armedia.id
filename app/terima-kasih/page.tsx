@@ -79,13 +79,13 @@ function ThankYouContent() {
           </ul>
         </div>
 
-        <p className="mt-6 text-xs text-slate-500">
+        <p className="mt-6 text-xs text-slate-600">
           Anda akan diarahkan kembali ke halaman utama dalam {countdown} detik...
         </p>
 
         <button
           onClick={() => (window.location.href = "/")}
-          className="mt-4 inline-flex items-center gap-2 rounded-md bg-red-600 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-sm hover:bg-slate-900 transition-all duration-300 cursor-pointer"
+          className="mt-4 inline-flex items-center gap-2 rounded-md bg-red-600 px-6 py-4 text-xs font-bold uppercase tracking-wider text-white shadow-sm hover:bg-slate-900 transition-all duration-300 cursor-pointer"
         >
           ← Kembali ke Halaman Utama
         </button>
@@ -99,7 +99,7 @@ export default function ThankYouPage() {
     <Suspense
       fallback={
         <div className="min-h-screen flex items-center justify-center bg-white">
-          <p className="text-slate-500 text-sm">Memuat...</p>
+          <p className="text-slate-600 text-sm">Memuat...</p>
         </div>
       }
     >

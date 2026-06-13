@@ -81,7 +81,7 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
                 </div>
                 <div>
                   <div className="text-sm font-bold text-slate-800">Jumlah HP / Gadget</div>
-                  <div className="text-[10px] text-slate-500 font-medium">Aktif bersamaan</div>
+                  <div className="text-[10px] text-slate-600 font-medium">Aktif bersamaan</div>
                 </div>
               </div>
               <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-xl p-1 shadow-sm shrink-0">
@@ -95,12 +95,12 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
             <div className="border border-slate-100 rounded-xl bg-slate-50 p-4 transition-all">
               <label className="flex items-center justify-between cursor-pointer">
                 <div className="flex items-center gap-3">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${hasTv ? 'bg-red-100 text-red-600' : 'bg-slate-200 text-slate-500'}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${hasTv ? 'bg-red-100 text-red-600' : 'bg-slate-200 text-slate-600'}`}>
                     <Tv size={16} />
                   </div>
                   <div>
                     <div className="text-sm font-bold text-slate-800">Smart TV / Android Box</div>
-                    <div className="text-[10px] text-slate-500 font-medium">Netflix, YouTube di TV</div>
+                    <div className="text-[10px] text-slate-600 font-medium">Netflix, YouTube di TV</div>
                   </div>
                 </div>
                 <div className="relative">
@@ -120,7 +120,7 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
                       <option value="50">50 Inch (Besar)</option>
                       <option value="55">55+ Inch (Sangat Besar)</option>
                     </select>
-                    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-600">
                       <ChevronDown size={14} strokeWidth={3} />
                     </div>
                   </div>
@@ -132,12 +132,12 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
             <div className="border border-slate-100 rounded-xl bg-slate-50 p-4 transition-all">
               <label className="flex items-center justify-between cursor-pointer">
                 <div className="flex items-center gap-3">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${hasLive ? 'bg-red-100 text-red-600' : 'bg-slate-200 text-slate-500'}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${hasLive ? 'bg-red-100 text-red-600' : 'bg-slate-200 text-slate-600'}`}>
                     <Video size={16} />
                   </div>
                   <div>
                     <div className="text-sm font-bold text-slate-800">Live Jualan / Streaming</div>
-                    <div className="text-[10px] text-slate-500 font-medium">TikTok Live, Shopee Live</div>
+                    <div className="text-[10px] text-slate-600 font-medium">TikTok Live, Shopee Live</div>
                   </div>
                 </div>
                 <div className="relative">
@@ -150,10 +150,10 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
           </div>
           
           <div className="bg-slate-900 p-6 md:p-10 flex flex-col items-center text-center border-t border-slate-800">
-            <p className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-500 mb-1">
+            <p className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-600 mb-1">
               Total Kebutuhan: <motion.span key={`${result.min}-${result.max}`} initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="inline-block text-white mx-1">{result.min} - {result.max}</motion.span> Mbps
             </p>
-            <p className="text-xs sm:text-sm font-medium text-slate-500 mb-5">
+            <p className="text-xs sm:text-sm font-medium text-slate-600 mb-5">
               Rekomendasi Paket Ideal Untuk Anda:
             </p>
             
