@@ -10,7 +10,7 @@ const LeafletMap = dynamic(
     ssr: false,
     loading: () => (
       <div className="h-[400px] w-full rounded-2xl bg-slate-100 animate-pulse flex items-center justify-center">
-        <span className="text-sm text-slate-400">Memuat peta...</span>
+        <span className="text-sm text-slate-500">Memuat peta...</span>
       </div>
     ),
   }
@@ -21,7 +21,7 @@ const LeafletMap = dynamic(
 function MapPlaceholder() {
   return (
     <div className="h-[400px] w-full rounded-2xl bg-slate-100 animate-pulse flex items-center justify-center">
-      <span className="text-sm text-slate-400">Memuat peta...</span>
+      <span className="text-sm text-slate-500">Memuat peta...</span>
     </div>
   );
 }
@@ -49,7 +49,7 @@ export default function CoverageSection() {
                 Area Terkover
               </span>
               <p className="text-xl font-black text-red-600">50+</p>
-              <p className="text-[9px] text-slate-400">Kota & Kabupaten</p>
+              <p className="text-[9px] text-slate-500">Kota & Kabupaten</p>
             </div>
 
             <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg border border-slate-100 z-[999]">
@@ -57,7 +57,7 @@ export default function CoverageSection() {
                 Pelanggan Aktif
               </span>
               <p className="text-xl font-black text-red-600">10K+</p>
-              <p className="text-[9px] text-slate-400">Rumah & Bisnis</p>
+              <p className="text-[9px] text-slate-500">Rumah & Bisnis</p>
             </div>
 
             {/* Decorative Element */}

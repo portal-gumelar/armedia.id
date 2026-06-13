@@ -145,7 +145,7 @@ export default function ACRSection() {
                   <div className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-xl mb-4 shadow-inner">
                     🎁
                   </div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Kumpulkan</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Kumpulkan</div>
                   <div className="text-xl font-black mt-1 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-300">Poin<br/>Reward</div>
                 </div>
               </motion.div>
@@ -177,7 +177,7 @@ export default function ACRSection() {
               transition={{ duration: 0.5 }}
               className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm flex-grow flex flex-col justify-center"
             >
-              <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-5 text-center flex items-center justify-center gap-2">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-5 text-center flex items-center justify-center gap-2">
                 <span className="w-8 h-px bg-slate-200"></span>
                 Pilihan Reward Anda
                 <span className="w-8 h-px bg-slate-200"></span>
@@ -222,7 +222,7 @@ export default function ACRSection() {
                   Tunggu tanggal Lounchingnya
                 </div>
 
-                <div className="mt-2 pt-4 border-t border-white/10 w-full text-[10px] font-medium text-slate-400 uppercase tracking-widest flex flex-col gap-1">
+                <div className="mt-2 pt-4 border-t border-white/10 w-full text-[10px] font-medium text-slate-500 uppercase tracking-widest flex flex-col gap-1">
                   <span>Manajemen Armedia</span>
                   <a href="https://www.armedia.id" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
                     www.armedia.id

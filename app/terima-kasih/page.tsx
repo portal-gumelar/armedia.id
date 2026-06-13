@@ -79,7 +79,7 @@ function ThankYouContent() {
           </ul>
         </div>
 
-        <p className="mt-6 text-xs text-slate-400">
+        <p className="mt-6 text-xs text-slate-500">
           Anda akan diarahkan kembali ke halaman utama dalam {countdown} detik...
         </p>
 
@@ -99,7 +99,7 @@ export default function ThankYouPage() {
     <Suspense
       fallback={
         <div className="min-h-screen flex items-center justify-center bg-white">
-          <p className="text-slate-400 text-sm">Memuat...</p>
+          <p className="text-slate-500 text-sm">Memuat...</p>
         </div>
       }
     >

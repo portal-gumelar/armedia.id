@@ -129,7 +129,7 @@ export default function FomoNotification() {
         </div>
         <button
           onClick={() => setVisible(false)}
-          className="flex-shrink-0 ml-1 text-slate-400 hover:text-slate-600 text-[10px] md:text-xs"
+          className="flex-shrink-0 ml-1 text-slate-500 hover:text-slate-600 text-[10px] md:text-xs"
         >
           ✕
         </button>

@@ -120,7 +120,7 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
                       <option value="50">50 Inch (Besar)</option>
                       <option value="55">55+ Inch (Sangat Besar)</option>
                     </select>
-                    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
                       <ChevronDown size={14} strokeWidth={3} />
                     </div>
                   </div>
@@ -150,7 +150,7 @@ export default function BandwidthCalculator({ onSelectPackage }: { onSelectPacka
           </div>
           
           <div className="bg-slate-900 p-6 md:p-10 flex flex-col items-center text-center border-t border-slate-800">
-            <p className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-400 mb-1">
+            <p className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-500 mb-1">
               Total Kebutuhan: <motion.span key={`${result.min}-${result.max}`} initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="inline-block text-white mx-1">{result.min} - {result.max}</motion.span> Mbps
             </p>
             <p className="text-xs sm:text-sm font-medium text-slate-500 mb-5">
