@@ -181,7 +181,7 @@ export default function ACRSection() {
                 <span className="w-8 h-px bg-slate-200"></span>
                 Pilihan Reward Anda
                 <span className="w-8 h-px bg-slate-200"></span>
-              </h4>
+              </h3>
               <div className="flex flex-wrap justify-center gap-2">
                 {rewards.map((reward, index) => (
                   <motion.div 
@@ -210,7 +210,7 @@ export default function ACRSection() {
                 
                 <h3 className="text-sm font-black text-red-400 uppercase tracking-widest">
                   Komunitas Armedia Reward
-                </h4>
+                </h3>
 
                 <p className="text-xs font-black text-white tracking-wide uppercase leading-relaxed">
                   Internet Tetap Terhubung,<br/>
