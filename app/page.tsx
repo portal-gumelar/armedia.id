@@ -584,7 +584,7 @@ export default function Home() {
           <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-6 md:p-8 shadow-2xl z-10 transform scale-100 transition-transform duration-300">
             <button 
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-900 font-bold text-lg p-2 rounded-full hover:bg-slate-100 transition-all cursor-pointer"
+              className="absolute top-4 right-4 text-slate-600 hover:text-slate-900 font-bold text-lg p-2 rounded-full hover:bg-slate-100 transition-all cursor-pointer"
             >
               ✕
             </button>
