@@ -42,6 +42,7 @@ export default function WhatsAppButton() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className="relative flex items-center justify-center group"
+        aria-label="Chat WhatsApp"
       >
         {/* Pinging background for attention */}
         <span className="absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-40 animate-ping" style={{ animationDuration: '2s' }}></span>

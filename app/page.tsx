@@ -224,7 +224,8 @@ export default function Home() {
           {/* Hamburger Trigger Tombol Mode HP */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 text-slate-700 md:hidden hover:bg-slate-50 cursor-pointer transition-colors"
+            className="flex h-12 w-12 items-center justify-center rounded-md border border-slate-200 text-slate-700 md:hidden hover:bg-slate-50 cursor-pointer transition-colors"
+            aria-label="Toggle Menu"
           >
             <span className="text-xl font-bold">{isMobileMenuOpen ? '✕' : '☰'}</span>
           </button>
@@ -713,11 +714,11 @@ export default function Home() {
             </div>
             <div>
               <h3 className="text-xs font-black uppercase tracking-widest text-slate-300 border-l-2 border-red-600 pl-3 mb-6">NAVIGASI ELEMEN</h3>
-              <ul className="space-y-3 text-xs text-slate-400 font-semibold">
-                <li><button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-red-500 transition-colors cursor-pointer text-left py-2">Home</button></li>
-                <li><button onClick={() => scrollToSection('about-section', 'about')} className="hover:text-red-500 transition-colors cursor-pointer text-left py-2">Tentang Kami</button></li>
-                <li><button onClick={() => scrollToSection('services-section', 'services')} className="hover:text-red-500 transition-colors cursor-pointer text-left py-2">Infrastruktur Jaringan</button></li>
-                <li><button onClick={() => scrollToSection('blog-section', 'blog')} className="hover:text-red-500 transition-colors cursor-pointer text-left py-2">Artikel & Berita</button></li>
+              <ul className="space-y-1 text-xs text-slate-400 font-semibold">
+                <li><button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-red-500 transition-colors cursor-pointer text-left py-3 block w-full">Home</button></li>
+                <li><button onClick={() => scrollToSection('about-section', 'about')} className="hover:text-red-500 transition-colors cursor-pointer text-left py-3 block w-full">Tentang Kami</button></li>
+                <li><button onClick={() => scrollToSection('services-section', 'services')} className="hover:text-red-500 transition-colors cursor-pointer text-left py-3 block w-full">Infrastruktur Jaringan</button></li>
+                <li><button onClick={() => scrollToSection('blog-section', 'blog')} className="hover:text-red-500 transition-colors cursor-pointer text-left py-3 block w-full">Artikel & Berita</button></li>
               </ul>
             </div>
             <div>
