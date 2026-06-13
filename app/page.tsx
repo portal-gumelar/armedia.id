@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import WhatsAppButton from '@/src/components/ui/wa-button';
 import ScrollObserver from '@/src/components/ui/scroll-observer';
 import DarkModeToggle from '@/src/components/ui/dark-mode-toggle';
@@ -190,22 +191,25 @@ export default function Home() {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-100 bg-white/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           {/* Logo Resmi ImageKit dengan Efek Skala Mikro */}
-          <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="transition-transform duration-300 hover:scale-105 active:scale-95 block">
-            <img 
+          <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="transition-transform duration-300 hover:scale-105 active:scale-95 block" aria-label="Home">
+            <Image 
               src="https://ik.imagekit.io/Gumelar/LogO/logo%20pt.png?updatedAt=1778213993513" 
               alt="PT Akses Artha Media Logo" 
+              width={160}
+              height={40}
+              priority
               className="h-10 w-auto object-contain"
             />
           </a>
           
           {/* Navigasi Desktop Menu dengan Indikator Aktif Dinamis */}
-          <nav className="hidden items-center gap-8 text-xs font-bold uppercase tracking-wider text-slate-600 md:flex">
-            <button onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setActiveTab('home'); }} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'home' ? 'text-red-600' : 'hover:text-red-600'}`}>HOME</button>
-            <button onClick={() => scrollToSection('about-section', 'about')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'about' ? 'text-red-600' : 'hover:text-red-600'}`}>TENTANG KAMI</button>
-            <button onClick={() => scrollToSection('services-section', 'services')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'services' ? 'text-red-600' : 'hover:text-red-600'}`}>LAYANAN</button>
-            <button onClick={() => scrollToSection('acr-section', 'acr')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'acr' ? 'text-red-600' : 'hover:text-red-600'}`}>ACR REWARD</button>
-            <button onClick={() => scrollToSection('testimonials-section', 'testimonials')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'testimonials' ? 'text-red-600' : 'hover:text-red-600'}`}>TESTIMONI</button>
-            <button onClick={() => scrollToSection('blog-section', 'blog')} className={`cursor-pointer transition-colors duration-300 ${activeTab === 'blog' ? 'text-red-600' : 'hover:text-red-600'}`}>ARTIKEL & BERITA</button>
+          <nav className="hidden items-center gap-6 text-xs font-bold uppercase tracking-wider text-slate-600 md:flex">
+            <button onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setActiveTab('home'); }} className={`cursor-pointer py-2 px-1 transition-colors duration-300 ${activeTab === 'home' ? 'text-red-600' : 'hover:text-red-600'}`}>HOME</button>
+            <button onClick={() => scrollToSection('about-section', 'about')} className={`cursor-pointer py-2 px-1 transition-colors duration-300 ${activeTab === 'about' ? 'text-red-600' : 'hover:text-red-600'}`}>TENTANG KAMI</button>
+            <button onClick={() => scrollToSection('services-section', 'services')} className={`cursor-pointer py-2 px-1 transition-colors duration-300 ${activeTab === 'services' ? 'text-red-600' : 'hover:text-red-600'}`}>LAYANAN</button>
+            <button onClick={() => scrollToSection('acr-section', 'acr')} className={`cursor-pointer py-2 px-1 transition-colors duration-300 ${activeTab === 'acr' ? 'text-red-600' : 'hover:text-red-600'}`}>ACR REWARD</button>
+            <button onClick={() => scrollToSection('testimonials-section', 'testimonials')} className={`cursor-pointer py-2 px-1 transition-colors duration-300 ${activeTab === 'testimonials' ? 'text-red-600' : 'hover:text-red-600'}`}>TESTIMONI</button>
+            <button onClick={() => scrollToSection('blog-section', 'blog')} className={`cursor-pointer py-2 px-1 transition-colors duration-300 ${activeTab === 'blog' ? 'text-red-600' : 'hover:text-red-600'}`}>ARTIKEL & BERITA</button>
           </nav>
 
           <div className="hidden md:block">
@@ -229,12 +233,12 @@ export default function Home() {
         {/* Dropdown Menu Khusus Mode HP */}
         {isMobileMenuOpen && (
           <div className="border-t border-slate-100 bg-white px-6 py-4 space-y-3 flex flex-col md:hidden shadow-xl animate-fade-in">
-            <button onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setIsMobileMenuOpen(false); setActiveTab('home'); }} className="text-left py-2 text-sm font-bold text-red-600">HOME</button>
-            <button onClick={() => scrollToSection('about-section', 'about')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">TENTANG KAMI</button>
-            <button onClick={() => scrollToSection('services-section', 'services')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">LAYANAN</button>
-            <button onClick={() => scrollToSection('acr-section', 'acr')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">ACR REWARD</button>
-            <button onClick={() => scrollToSection('testimonials-section', 'testimonials')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">TESTIMONI</button>
-            <button onClick={() => scrollToSection('blog-section', 'blog')} className="text-left py-2 text-sm font-bold text-slate-600 hover:text-red-600">ARTIKEL & BERITA</button>
+            <button onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setIsMobileMenuOpen(false); setActiveTab('home'); }} className="text-left py-3 text-sm font-bold text-red-600">HOME</button>
+            <button onClick={() => scrollToSection('about-section', 'about')} className="text-left py-3 text-sm font-bold text-slate-600 hover:text-red-600">TENTANG KAMI</button>
+            <button onClick={() => scrollToSection('services-section', 'services')} className="text-left py-3 text-sm font-bold text-slate-600 hover:text-red-600">LAYANAN</button>
+            <button onClick={() => scrollToSection('acr-section', 'acr')} className="text-left py-3 text-sm font-bold text-slate-600 hover:text-red-600">ACR REWARD</button>
+            <button onClick={() => scrollToSection('testimonials-section', 'testimonials')} className="text-left py-3 text-sm font-bold text-slate-600 hover:text-red-600">TESTIMONI</button>
+            <button onClick={() => scrollToSection('blog-section', 'blog')} className="text-left py-3 text-sm font-bold text-slate-600 hover:text-red-600">ARTIKEL & BERITA</button>
             <a
               href="https://gumelar.armedia.id/"
               className="block w-full mt-2 rounded-md bg-red-600 py-3 text-center text-xs font-bold uppercase tracking-wider text-white shadow-sm"
@@ -281,7 +285,7 @@ export default function Home() {
                 MULAI DAFTAR SEKARANG
               </motion.button>
               <div className="flex flex-col border-l border-slate-200 pl-6">
-                <span className="text-[10px] text-slate-400 uppercase font-black tracking-widest">CUKUP MBAYAR WULANANE</span>
+                <span className="text-[10px] text-slate-500 uppercase font-black tracking-widest">CUKUP MBAYAR WULANANE</span>
                 <span className="text-2xl font-black tracking-tight text-red-600">Rp 115.000<span className="text-sm font-medium text-slate-500">/bln</span></span>
               </div>
             </div>
@@ -294,12 +298,14 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-xl border border-slate-100 group"
           >
-            <img 
+            <Image 
               src="/hero-fiber-optic.png" 
               alt="ARMEDIA Fiber Infrastructure" 
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              fill
+              priority
+              className="absolute inset-0 object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none"></div>
             <div className="absolute bottom-6 left-6 right-6 flex justify-between items-center z-10 backdrop-blur-md bg-white/20 p-4 rounded-xl border border-white/10">
               <span className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span> Jaringan Aktif Fiber Optik
@@ -404,7 +410,7 @@ export default function Home() {
                       <ul className="mt-8 space-y-4 text-xs font-medium text-slate-600">
                         {pkg.features.map((feat, i) => (
                           <li key={i} className="flex items-center gap-3">
-                            <span className={`${pkg.isPopular || isSelected ? 'text-red-600' : 'text-slate-400'} font-bold text-xs`}>✓</span> 
+                            <span className={`${pkg.isPopular || isSelected ? 'text-red-600' : 'text-slate-500'} font-bold text-xs`}>✓</span> 
                             {feat}
                           </li>
                         ))}
@@ -498,7 +504,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {isLoading ? (
-                <p className="col-span-full text-center text-xs text-slate-400">Memuat testimoni...</p>
+                <p className="col-span-full text-center text-xs text-slate-500">Memuat testimoni...</p>
               ) : testimonials.length > 0 ? (
                 testimonials.map((t) => (
                   <div key={t.id} className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
@@ -508,14 +514,14 @@ export default function Home() {
                     <div className="mt-6 border-t border-slate-100 pt-4 flex items-center gap-3">
                       <div className="h-8 w-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs">{t.avatar_initials}</div>
                       <div>
-                        <h4 className="text-xs font-bold text-slate-900">{t.author_name}</h4>
-                        <p className="text-[10px] text-slate-400 font-semibold">{t.author_role}</p>
+                        <h3 className="text-xs font-bold text-slate-900">{t.author_name}</h3>
+                        <p className="text-[10px] text-slate-500 font-semibold">{t.author_role}</p>
                       </div>
                     </div>
                   </div>
                 ))
               ) : (
-                <p className="col-span-full text-center text-xs text-slate-400">Belum ada testimoni.</p>
+                <p className="col-span-full text-center text-xs text-slate-500">Belum ada testimoni.</p>
               )}
             </div>
           </motion.div>
@@ -538,12 +544,12 @@ export default function Home() {
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {isLoading ? (
-              <p className="col-span-full text-center text-xs text-slate-400">Memuat artikel...</p>
+              <p className="col-span-full text-center text-xs text-slate-500">Memuat artikel...</p>
             ) : articles.length > 0 ? (
               articles.map((a) => (
                 <div key={a.id} className="group rounded-xl border border-slate-200 bg-white overflow-hidden shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-lg">
                   <div className="h-40 w-full relative overflow-hidden bg-slate-100">
-                    <img src={a.image_url} alt={a.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <Image src={a.image_url} alt={a.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-5 flex-1 flex flex-col justify-between">
                     <div>
@@ -551,14 +557,14 @@ export default function Home() {
                       <h3 className="mt-2 text-sm font-bold text-slate-900 leading-snug group-hover:text-red-600 transition-colors">{a.title}</h3>
                       <p className="mt-1 text-xs text-slate-500 line-clamp-2">{a.excerpt}</p>
                     </div>
-                    <a href="#" className="mt-4 inline-flex items-center text-xs font-bold text-red-600 uppercase tracking-wider">
+                    <a href="#" aria-label={`Baca artikel: ${a.title}`} className="mt-4 inline-flex items-center text-xs font-bold text-red-600 uppercase tracking-wider">
                       BACA <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
                     </a>
                   </div>
                 </div>
               ))
             ) : (
-              <p className="col-span-full text-center text-xs text-slate-400">Belum ada artikel.</p>
+              <p className="col-span-full text-center text-xs text-slate-500">Belum ada artikel.</p>
             )}
           </div>
           </motion.div>
@@ -692,10 +698,12 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
             <div className="space-y-4">
               {/* Logo Resmi Ter-invert Menjadi Putih Bersih */}
-              <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="inline-block">
-                <img 
+              <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="inline-block" aria-label="Home">
+                <Image 
                   src="https://ik.imagekit.io/Gumelar/LogO/logo%20pt.png?updatedAt=1778213993513" 
                   alt="PT Akses Artha Media Logo Footer" 
+                  width={160}
+                  height={40}
                   className="h-10 w-auto object-contain brightness-0 invert"
                 />
               </a>
@@ -704,16 +712,16 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <h4 className="text-xs font-black uppercase tracking-widest text-slate-300 border-l-2 border-red-600 pl-3 mb-6">NAVIGASI ELEMEN</h4>
+              <h3 className="text-xs font-black uppercase tracking-widest text-slate-300 border-l-2 border-red-600 pl-3 mb-6">NAVIGASI ELEMEN</h3>
               <ul className="space-y-3 text-xs text-slate-400 font-semibold">
-                <li><button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-red-500 transition-colors cursor-pointer text-left">Home</button></li>
-                <li><button onClick={() => scrollToSection('about-section', 'about')} className="hover:text-red-500 transition-colors cursor-pointer text-left">Tentang Kami</button></li>
-                <li><button onClick={() => scrollToSection('services-section', 'services')} className="hover:text-red-500 transition-colors cursor-pointer text-left">Infrastruktur Jaringan</button></li>
-                <li><button onClick={() => scrollToSection('blog-section', 'blog')} className="hover:text-red-500 transition-colors cursor-pointer text-left">Artikel & Berita</button></li>
+                <li><button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-red-500 transition-colors cursor-pointer text-left py-2">Home</button></li>
+                <li><button onClick={() => scrollToSection('about-section', 'about')} className="hover:text-red-500 transition-colors cursor-pointer text-left py-2">Tentang Kami</button></li>
+                <li><button onClick={() => scrollToSection('services-section', 'services')} className="hover:text-red-500 transition-colors cursor-pointer text-left py-2">Infrastruktur Jaringan</button></li>
+                <li><button onClick={() => scrollToSection('blog-section', 'blog')} className="hover:text-red-500 transition-colors cursor-pointer text-left py-2">Artikel & Berita</button></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-xs font-black uppercase tracking-widest text-slate-300 border-l-2 border-red-600 pl-3 mb-6">HUBUNGI KAMI</h4>
+              <h3 className="text-xs font-black uppercase tracking-widest text-slate-300 border-l-2 border-red-600 pl-3 mb-6">HUBUNGI KAMI</h3>
               <div className="space-y-4 text-xs text-slate-400">
                 <div>
                   <p className="font-bold text-slate-300">Email Dukungan Layanan:</p>

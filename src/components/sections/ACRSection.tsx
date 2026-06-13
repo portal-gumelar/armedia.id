@@ -177,7 +177,7 @@ export default function ACRSection() {
               transition={{ duration: 0.5 }}
               className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm flex-grow flex flex-col justify-center"
             >
-              <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-5 text-center flex items-center justify-center gap-2">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-5 text-center flex items-center justify-center gap-2">
                 <span className="w-8 h-px bg-slate-200"></span>
                 Pilihan Reward Anda
                 <span className="w-8 h-px bg-slate-200"></span>
@@ -208,7 +208,7 @@ export default function ACRSection() {
               <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
               <div className="bg-white/5 backdrop-blur-sm rounded-xl py-6 px-6 text-center border border-white/10 relative z-10 flex flex-col items-center gap-4">
                 
-                <h4 className="text-sm font-black text-red-400 uppercase tracking-widest">
+                <h3 className="text-sm font-black text-red-400 uppercase tracking-widest">
                   Komunitas Armedia Reward
                 </h4>
 
