@@ -178,10 +178,26 @@ const jsonLdLocalBusiness = {
       {
         "@type": "Offer",
         name: "PAKET 3 — 50 Mbps",
-        price: "182000",
+        price: "175000",
         priceCurrency: "IDR",
         priceSpecification: { billingDuration: "P1M" },
         description: "Kecepatan 50 Mbps, unlimited, cocok untuk WFH & streaming",
+      },
+      {
+        "@type": "Offer",
+        name: "PAKET 4 — 75 Mbps",
+        price: "250000",
+        priceCurrency: "IDR",
+        priceSpecification: { billingDuration: "P1M" },
+        description: "Kecepatan 75 Mbps, unlimited, cocok untuk bandwidth besar",
+      },
+      {
+        "@type": "Offer",
+        name: "PAKET 5 — 100 Mbps",
+        price: "315000",
+        priceCurrency: "IDR",
+        priceSpecification: { billingDuration: "P1M" },
+        description: "Kecepatan 100 Mbps, unlimited, cocok untuk bisnis & heavy user",
       },
     ],
   },
@@ -204,7 +220,7 @@ const jsonLdFaq = {
       name: "Berapa harga paket internet ARMEDIA di Gumelar?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Paket internet ARMEDIA di Gumelar mulai dari Rp 115.000/bulan untuk kecepatan 20 Mbps. Tersedia juga paket 30 Mbps (Rp 142.000) dan 50 Mbps (Rp 182.000).",
+        text: "Paket internet ARMEDIA di Gumelar mulai dari Rp 115.000/bulan untuk kecepatan 20 Mbps. Tersedia juga paket 30 Mbps (Rp 142.000), 50 Mbps (Rp 175.000), 75 Mbps (Rp 250.000), dan 100 Mbps (Rp 315.000).",
       },
     },
     {

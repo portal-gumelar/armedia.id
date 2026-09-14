@@ -69,7 +69,7 @@ const internetPackages = [
     name: 'PAKET_3 (Premium)',
     speed: '50 Mbps',
     speedText: 'Upto 50 MBPS',
-    price: 'Rp 182.000',
+    price: 'Rp 175.000',
     features: [
       'Bandwidth Extra Besar',
       'Download / Upload Unlimited',
@@ -82,7 +82,7 @@ const internetPackages = [
     name: 'PAKET_4 (Super)',
     speed: '75 Mbps',
     speedText: 'Upto 75 MBPS',
-    price: 'Rp 260.000',
+    price: 'Rp 250.000',
     features: [
       'Bandwidth Super Besar & Stabil',
       'Download / Upload Unlimited',
@@ -95,7 +95,7 @@ const internetPackages = [
     name: 'PAKET_5 (Ultimate)',
     speed: '100 Mbps',
     speedText: 'Upto 100 MBPS',
-    price: 'Rp 330.000',
+    price: 'Rp 315.000',
     features: [
       'Kecepatan Maksimal Tanpa Batas',
       'Download / Upload Unlimited',
@@ -598,9 +598,9 @@ export default function Home() {
                 >
                   <option value="PAKET_1">PAKET_1 - 20 Mbps (Rp 115.000 / bln)</option>
                   <option value="PAKET_2">PAKET_2 - 30 Mbps (Rp 142.000 / bln)</option>
-                  <option value="PAKET_3">PAKET_3 - 50 Mbps (Rp 182.000 / bln)</option>
-                  <option value="PAKET_4">PAKET_4 - 75 Mbps (Rp 260.000 / bln)</option>
-                  <option value="PAKET_5">PAKET_5 - 100 Mbps (Rp 330.000 / bln)</option>
+                  <option value="PAKET_3">PAKET_3 - 50 Mbps (Rp 175.000 / bln)</option>
+                  <option value="PAKET_4">PAKET_4 - 75 Mbps (Rp 250.000 / bln)</option>
+                  <option value="PAKET_5">PAKET_5 - 100 Mbps (Rp 315.000 / bln)</option>
                 </select>
               </div>
 
