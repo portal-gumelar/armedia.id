@@ -56,7 +56,7 @@ const internetPackages = [
     name: 'PAKET_2 (Family)',
     speed: '30 Mbps',
     speedText: 'Upto 30 MBPS',
-    price: 'Rp 148.000',
+    price: 'Rp 142.000',
     features: [
       'Kecepatan Optimal Stabil',
       'Download / Upload Unlimited',
@@ -117,7 +117,7 @@ export default function Home() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Fallback Data
+  // Fallback Data (jika Laravel API tidak tersedia)
   const fallbackTestimonials: Testimonial[] = [
     { id: 1, quote: "Koneksi stabil dan jarang gangguan. Sangat membantu bisnis online saya.", author_name: "Budi Santoso", author_role: "Pemilik UMKM", avatar_initials: "BS" },
     { id: 2, quote: "Pelayanan teknisi sangat cepat dan ramah saat ada kendala.", author_name: "Siti Aminah", author_role: "Ibu Rumah Tangga", avatar_initials: "SA" },
@@ -131,26 +131,18 @@ export default function Home() {
     { id: 4, category: "INFORMASI", title: "Perluasan Jaringan ARMEDIA 2026", excerpt: "Kami terus memperluas jaringan ke berbagai pelosok desa.", image_url: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80" }
   ];
 
+  const LARAVEL_API = process.env.NEXT_PUBLIC_LARAVEL_URL || 'http://localhost:8000';
+
   useEffect(() => {
     let isMounted = true;
-    
-    Promise.all([
-      supabase.from("testimonials").select("*").order("id", { ascending: true }),
-      supabase.from("articles").select("*").order("id", { ascending: true })
-    ]).then(([testiRes, articleRes]) => {
-      if (!isMounted) return;
-      
-      if (!testiRes.error && testiRes.data && testiRes.data.length > 0) {
-        setTestimonials(testiRes.data);
-      } else {
-        setTestimonials(fallbackTestimonials);
-      }
 
-      if (!articleRes.error && articleRes.data && articleRes.data.length > 0) {
-        setArticles(articleRes.data);
-      } else {
-        setArticles(fallbackArticles);
-      }
+    Promise.all([
+      fetch(`${LARAVEL_API}/api/testimonials`).then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch(`${LARAVEL_API}/api/articles`).then(r => r.ok ? r.json() : null).catch(() => null),
+    ]).then(([testiData, articleData]) => {
+      if (!isMounted) return;
+      setTestimonials(testiData && testiData.length > 0 ? testiData : fallbackTestimonials);
+      setArticles(articleData && articleData.length > 0 ? articleData : fallbackArticles);
       setIsLoading(false);
     }).catch(() => {
       if (isMounted) {
@@ -179,7 +171,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-white font-sans text-slate-900 antialiased selection:bg-red-500/10 scroll-smooth">
+    <div className="relative min-h-screen bg-white dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 antialiased selection:bg-red-500/10 scroll-smooth transition-colors duration-300">
       
       {/* FOMO Social Proof Notification */}
       <FomoNotification />
@@ -188,7 +180,7 @@ export default function Home() {
       <WhatsAppButton />
       
       {/* ================= 1. NAVBAR SECTION (WITH IMAGEKIT LOGO & RESPONSIVE INTERACTION) ================= */}
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-100 bg-white/90 backdrop-blur-md">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-100 dark:border-slate-800 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md transition-colors duration-300">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           {/* Logo Resmi ImageKit dengan Efek Skala Mikro */}
           <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="transition-transform duration-300 hover:scale-105 active:scale-95 block py-2" aria-label="Home">
@@ -203,7 +195,7 @@ export default function Home() {
           </a>
           
           {/* Navigasi Desktop Menu dengan Indikator Aktif Dinamis */}
-          <nav className="hidden items-center gap-6 text-xs font-bold uppercase tracking-wider text-slate-600 md:flex">
+          <nav className="hidden items-center gap-6 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 md:flex">
             <button onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setActiveTab('home'); }} className={`cursor-pointer py-2 px-1 transition-colors duration-300 ${activeTab === 'home' ? 'text-red-600' : 'hover:text-red-600'}`}>HOME</button>
             <button onClick={() => scrollToSection('about-section', 'about')} className={`cursor-pointer py-2 px-1 transition-colors duration-300 ${activeTab === 'about' ? 'text-red-600' : 'hover:text-red-600'}`}>TENTANG KAMI</button>
             <button onClick={() => scrollToSection('services-section', 'services')} className={`cursor-pointer py-2 px-1 transition-colors duration-300 ${activeTab === 'services' ? 'text-red-600' : 'hover:text-red-600'}`}>LAYANAN</button>
@@ -212,7 +204,8 @@ export default function Home() {
             <button onClick={() => scrollToSection('blog-section', 'blog')} className={`cursor-pointer py-2 px-1 transition-colors duration-300 ${activeTab === 'blog' ? 'text-red-600' : 'hover:text-red-600'}`}>ARTIKEL & BERITA</button>
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden md:flex md:items-center md:gap-4">
+            <DarkModeToggle />
             <a
               href="https://gumelar.armedia.id/"
               className="inline-block rounded-md bg-red-600 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition-all duration-300 hover:bg-slate-900 cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
@@ -224,7 +217,7 @@ export default function Home() {
           {/* Hamburger Trigger Tombol Mode HP */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex h-12 w-12 items-center justify-center rounded-md border border-slate-200 text-slate-700 md:hidden hover:bg-slate-50 cursor-pointer transition-colors"
+            className="flex h-12 w-12 items-center justify-center rounded-md border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 md:hidden hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer transition-colors"
             aria-label="Toggle Menu"
           >
             <span className="text-xl font-bold">{isMobileMenuOpen ? '✕' : '☰'}</span>
@@ -233,13 +226,13 @@ export default function Home() {
 
         {/* Dropdown Menu Khusus Mode HP */}
         {isMobileMenuOpen && (
-          <div className="border-t border-slate-100 bg-white px-6 py-4 space-y-3 flex flex-col md:hidden shadow-xl animate-fade-in">
+          <div className="border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 px-6 py-4 space-y-3 flex flex-col md:hidden shadow-xl animate-fade-in">
             <button onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setIsMobileMenuOpen(false); setActiveTab('home'); }} className="text-left py-4 block w-full text-sm font-bold text-red-600">HOME</button>
-            <button onClick={() => scrollToSection('about-section', 'about')} className="text-left py-4 block w-full text-sm font-bold text-slate-600 hover:text-red-600">TENTANG KAMI</button>
-            <button onClick={() => scrollToSection('services-section', 'services')} className="text-left py-4 block w-full text-sm font-bold text-slate-600 hover:text-red-600">LAYANAN</button>
-            <button onClick={() => scrollToSection('acr-section', 'acr')} className="text-left py-4 block w-full text-sm font-bold text-slate-600 hover:text-red-600">ACR REWARD</button>
-            <button onClick={() => scrollToSection('testimonials-section', 'testimonials')} className="text-left py-4 block w-full text-sm font-bold text-slate-600 hover:text-red-600">TESTIMONI</button>
-            <button onClick={() => scrollToSection('blog-section', 'blog')} className="text-left py-4 block w-full text-sm font-bold text-slate-600 hover:text-red-600">ARTIKEL & BERITA</button>
+            <button onClick={() => scrollToSection('about-section', 'about')} className="text-left py-4 block w-full text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500">TENTANG KAMI</button>
+            <button onClick={() => scrollToSection('services-section', 'services')} className="text-left py-4 block w-full text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500">LAYANAN</button>
+            <button onClick={() => scrollToSection('acr-section', 'acr')} className="text-left py-4 block w-full text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500">ACR REWARD</button>
+            <button onClick={() => scrollToSection('testimonials-section', 'testimonials')} className="text-left py-4 block w-full text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500">TESTIMONI</button>
+            <button onClick={() => scrollToSection('blog-section', 'blog')} className="text-left py-4 block w-full text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500">ARTIKEL & BERITA</button>
             <a
               href="https://gumelar.armedia.id/"
               className="block w-full mt-2 rounded-md bg-red-600 py-4 text-center text-xs font-bold uppercase tracking-wider text-white shadow-sm"
@@ -266,14 +259,14 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col items-start text-left"
           >
-            <div className="inline-flex items-center gap-2 rounded bg-red-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-red-600 animate-pulse">
+            <div className="inline-flex items-center gap-2 rounded bg-red-50 dark:bg-red-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400 animate-pulse">
               🇮🇩 Konektivitas Tanpa Batas Masa Depan
             </div>
-            <h1 className="mt-6 text-5xl font-black leading-[1.1] tracking-tight text-slate-900 sm:text-6xl xl:text-7xl">
+            <h1 className="mt-6 text-5xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-white sm:text-6xl xl:text-7xl">
               Jembatan Digital <br />
               <span className="text-red-600">Masa Depan</span>
             </h1>
-            <p className="mt-6 text-base leading-relaxed text-slate-600 max-w-xl text-justify">
+            <p className="mt-6 text-base leading-relaxed text-slate-600 dark:text-slate-400 max-w-xl text-justify">
               Solusi internet Fiber Optic dan VSAT terbaik untuk mengakselerasi digitalisasi bisnis Anda. Kami percaya bahwa akses internet yang stabil dan cepat adalah fondasi utama dalam percepatan digitalisasi di Indonesia.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-6">
@@ -285,9 +278,9 @@ export default function Home() {
               >
                 MULAI DAFTAR SEKARANG
               </motion.button>
-              <div className="flex flex-col border-l border-slate-200 pl-6">
-                <span className="text-[10px] text-slate-600 uppercase font-black tracking-widest">CUKUP MBAYAR WULANANE</span>
-                <span className="text-2xl font-black tracking-tight text-red-600">Rp 115.000<span className="text-sm font-medium text-slate-600">/bln</span></span>
+              <div className="flex flex-col border-l border-slate-200 dark:border-slate-800 pl-6">
+                <span className="text-[10px] text-slate-600 dark:text-slate-400 uppercase font-black tracking-widest">CUKUP MBAYAR WULANANE</span>
+                <span className="text-2xl font-black tracking-tight text-red-600">Rp 115.000<span className="text-sm font-medium text-slate-600 dark:text-slate-400">/bln</span></span>
               </div>
             </div>
           </motion.div>
@@ -297,7 +290,7 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-xl border border-slate-100 group"
+            className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-xl border border-slate-100 dark:border-slate-800 group"
           >
             <Image 
               src="/hero-fiber-optic.png" 
@@ -317,7 +310,7 @@ export default function Home() {
         </section>
 
         {/* ================= 3. TENTANG KAMI SECTION ================= */}
-        <section id="about-section" className="mx-auto max-w-7xl px-6 py-24 lg:px-8 border-t border-slate-100 scroll-mt-20">
+        <section id="about-section" className="mx-auto max-w-7xl px-6 py-24 lg:px-8 border-t border-slate-100 dark:border-slate-800 scroll-mt-20">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -327,7 +320,7 @@ export default function Home() {
           >
             <div className="relative group">
               <span className="text-xs font-bold uppercase tracking-widest text-red-600">ABOUT COMPANY</span>
-              <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
+              <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl">
                 PT AKSES ARTHA MEDIA (ARMEDIA)
               </h2>
               <p className="mt-3 text-sm font-black text-red-600 tracking-wide uppercase flex items-center gap-2">
@@ -335,7 +328,7 @@ export default function Home() {
                 <span className="animate-bounce">🚀</span>
               </p>
             </div>
-            <div className="lg:col-span-2 space-y-6 text-base leading-relaxed text-slate-600 font-medium text-justify">
+            <div className="lg:col-span-2 space-y-6 text-base leading-relaxed text-slate-600 dark:text-slate-400 font-medium text-justify">
               <p>
                 PT AKSES ARTHA MEDIA atau ARMEDIA adalah perusahaan penyedia layanan internet (ISP) yang berkomitmen untuk menghadirkan konektivitas tanpa batas bagi masyarakat dan pelaku usaha. Kami percaya bahwa akses internet yang stabil dan cepat adalah fondasi utama dalam percepatan digitalisasi di Indonesia.
               </p>
@@ -354,7 +347,7 @@ export default function Home() {
         }} />
 
         {/* ================= 4. VALUE PLANS / LAYANAN SECTION (Elevating Cards) ================= */}
-        <section id="services-section" className="bg-slate-50 py-24 border-t border-slate-100 scroll-mt-20">
+        <section id="services-section" className="bg-slate-50 dark:bg-slate-900/50 py-24 border-t border-slate-100 dark:border-slate-800 scroll-mt-20">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -364,7 +357,7 @@ export default function Home() {
           >
             <div className="text-center">
               <span className="text-xs font-bold uppercase tracking-widest text-red-600">PAKET INTERNET</span>
-              <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
+              <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl">
                 Cukup Mbayar Wulanane
               </h2>
             </div>
@@ -377,10 +370,10 @@ export default function Home() {
                     key={pkg.id}
                     onClick={() => setSelectedPackage(pkg.id)}
                     whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                    className={`rounded-2xl border bg-white p-6 shadow-sm flex flex-col justify-between transition-all duration-300 cursor-pointer relative
+                    className={`rounded-2xl border bg-white dark:bg-slate-900 p-6 shadow-sm flex flex-col justify-between transition-all duration-300 cursor-pointer relative
                       ${isSelected 
-                        ? 'border-red-600 border-2 ring-4 ring-red-600/10 shadow-md' 
-                        : 'border-slate-200 hover:shadow-md hover:border-slate-300'
+                        ? 'border-red-600 dark:border-red-600 border-2 ring-4 ring-red-600/10 shadow-md' 
+                        : 'border-slate-200 dark:border-slate-800 hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700'
                       }`}
                   >
                     {pkg.isPopular && (
@@ -448,7 +441,7 @@ export default function Home() {
           >
             <div className="lg:col-span-1 flex flex-col justify-center">
               <span className="text-xs font-bold uppercase tracking-widest text-red-600">MENGAPA BERMITRA</span>
-              <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
+              <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl">
                 Keunggulan Utama Layanan ARMEDIA<span className="text-red-600">.</span>
               </h2>
             </div>
@@ -488,7 +481,7 @@ export default function Home() {
         <ACRSection />
 
         {/* ================= 6. TESTIMONI SECTION ================= */}
-        <section id="testimonials-section" className="bg-slate-50 py-24 border-t border-b border-slate-100 scroll-mt-20">
+        <section id="testimonials-section" className="bg-slate-50 dark:bg-slate-900/50 py-24 border-t border-b border-slate-100 dark:border-slate-800 scroll-mt-20">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -498,31 +491,31 @@ export default function Home() {
           >
             <div className="max-w-2xl mx-auto text-center mb-16">
               <span className="text-xs font-bold uppercase tracking-widest text-red-600">TESTIMONI</span>
-              <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
+              <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl">
                 Apa Kata Mereka?
               </h2>
             </div>
 
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {isLoading ? (
-                <p className="col-span-full text-center text-xs text-slate-600">Memuat testimoni...</p>
+                <p className="col-span-full text-center text-xs text-slate-600 dark:text-slate-400">Memuat testimoni...</p>
               ) : testimonials.length > 0 ? (
                 testimonials.map((t) => (
-                  <div key={t.id} className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
-                    <p className="text-xs italic text-slate-600 leading-relaxed">
+                  <div key={t.id} className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md">
+                    <p className="text-xs italic text-slate-600 dark:text-slate-400 leading-relaxed">
                       "{t.quote}"
                     </p>
-                    <div className="mt-6 border-t border-slate-100 pt-4 flex items-center gap-3">
-                      <div className="h-8 w-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs">{t.avatar_initials}</div>
+                    <div className="mt-6 border-t border-slate-100 dark:border-slate-800 pt-4 flex items-center gap-3">
+                      <div className="h-8 w-8 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 flex items-center justify-center font-bold text-xs">{t.avatar_initials}</div>
                       <div>
-                        <h3 className="text-xs font-bold text-slate-900">{t.author_name}</h3>
-                        <p className="text-[10px] text-slate-600 font-semibold">{t.author_role}</p>
+                        <h3 className="text-xs font-bold text-slate-900 dark:text-white">{t.author_name}</h3>
+                        <p className="text-[10px] text-slate-600 dark:text-slate-500 font-semibold">{t.author_role}</p>
                       </div>
                     </div>
                   </div>
                 ))
               ) : (
-                <p className="col-span-full text-center text-xs text-slate-600">Belum ada testimoni.</p>
+                <p className="col-span-full text-center text-xs text-slate-600 dark:text-slate-400">Belum ada testimoni.</p>
               )}
             </div>
           </motion.div>
@@ -538,34 +531,34 @@ export default function Home() {
           >
             <div className="max-w-2xl mx-auto text-center mb-16">
             <span className="text-xs font-bold uppercase tracking-widest text-red-600">WAWASAN DIGITAL</span>
-            <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
+            <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl">
               Artikel & Berita Terbaru
             </h2>
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {isLoading ? (
-              <p className="col-span-full text-center text-xs text-slate-600">Memuat artikel...</p>
+              <p className="col-span-full text-center text-xs text-slate-600 dark:text-slate-400">Memuat artikel...</p>
             ) : articles.length > 0 ? (
               articles.map((a) => (
-                <div key={a.id} className="group rounded-xl border border-slate-200 bg-white overflow-hidden shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-lg">
-                  <div className="h-40 w-full relative overflow-hidden bg-slate-100">
+                <div key={a.id} className="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-lg">
+                  <div className="h-40 w-full relative overflow-hidden bg-slate-100 dark:bg-slate-800">
                     <Image src={a.image_url} alt={a.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-5 flex-1 flex flex-col justify-between">
                     <div>
                       <span className="text-[9px] font-black tracking-widest uppercase text-red-600">{a.category}</span>
-                      <h3 className="mt-2 text-sm font-bold text-slate-900 leading-snug group-hover:text-red-600 transition-colors">{a.title}</h3>
-                      <p className="mt-1 text-xs text-slate-600 line-clamp-2">{a.excerpt}</p>
+                      <h3 className="mt-2 text-sm font-bold text-slate-900 dark:text-white leading-snug group-hover:text-red-600 transition-colors">{a.title}</h3>
+                      <p className="mt-1 text-xs text-slate-600 dark:text-slate-400 line-clamp-2">{a.excerpt}</p>
                     </div>
-                    <a href="#" aria-label={`Baca artikel: ${a.title}`} className="mt-4 inline-flex items-center text-xs font-bold text-red-600 uppercase tracking-wider py-2">
+                    <a href={`/artikel/${a.id}`} aria-label={`Baca artikel: ${a.title}`} className="mt-4 inline-flex items-center text-xs font-bold text-red-600 uppercase tracking-wider py-2">
                       BACA <span className="ml-1 transition-transform group-hover:translate-x-1">→</span>
                     </a>
                   </div>
                 </div>
               ))
             ) : (
-              <p className="col-span-full text-center text-xs text-slate-600">Belum ada artikel.</p>
+              <p className="col-span-full text-center text-xs text-slate-600 dark:text-slate-400">Belum ada artikel.</p>
             )}
           </div>
           </motion.div>
@@ -581,30 +574,30 @@ export default function Home() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm transition-opacity duration-300">
           <div className="absolute inset-0" onClick={() => setIsModalOpen(false)}></div>
           
-          <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-6 md:p-8 shadow-2xl z-10 transform scale-100 transition-transform duration-300">
+          <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 md:p-8 shadow-2xl z-10 transform scale-100 transition-transform duration-300">
             <button 
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-slate-600 hover:text-slate-900 font-bold text-lg p-2 rounded-full hover:bg-slate-100 transition-all cursor-pointer"
+              className="absolute top-4 right-4 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-bold text-lg p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-all cursor-pointer"
             >
               ✕
             </button>
 
             <div className="text-center mb-8 pr-6">
               <span className="text-xs font-black uppercase tracking-widest text-red-600">📡 ONLINE APPLICATION</span>
-              <h2 className="mt-1 text-2xl font-black tracking-tight text-slate-900">Formulir Registrasi Pemasangan</h2>
-              <p className="text-xs text-slate-600 mt-1">Lengkapi data untuk konfirmasi node area cakupan tim lapangan.</p>
+              <h2 className="mt-1 text-2xl font-black tracking-tight text-slate-900 dark:text-white">Formulir Registrasi Pemasangan</h2>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Lengkapi data untuk konfirmasi node area cakupan tim lapangan.</p>
             </div>
 
             <form onSubmit={async (e) => { e.preventDefault(); const form = e.currentTarget; const namaInput = form.querySelector<HTMLInputElement>("input[name='nama']"); const waInput = form.querySelector<HTMLInputElement>("input[type='tel']"); const langgananSelect = form.querySelector<HTMLSelectElement>("select"); const allSelects = form.querySelectorAll<HTMLSelectElement>("select"); const desaSelect = allSelects[2]; const tglSelect = allSelects[3]; const waktuSelect = allSelects[4]; const alamatTextarea = form.querySelector<HTMLTextAreaElement>("textarea"); const nama = namaInput?.value?.trim() || "Pelanggan"; try { const res = await fetch("/api/register", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ paket: selectedPackage, langganan_sebelumnya: langgananSelect?.value, nama, whatsapp: waInput?.value?.trim(), desa: desaSelect?.value, alamat: alamatTextarea?.value?.trim(), tanggal_pemasangan: tglSelect?.value, waktu_survei: waktuSelect?.value, }), }); if (!res.ok) throw new Error(); } catch (_) {} setIsModalOpen(false); window.location.href = `/terima-kasih?paket=${encodeURIComponent(selectedPackage)}&nama=${encodeURIComponent(nama)}`; }} className="space-y-5 text-left">
               <div>
-                <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 mb-1.5">PAKET LAYANAN INTERNET PILIHAN *</label>
+                <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">PAKET LAYANAN INTERNET PILIHAN *</label>
                 <select 
                   value={selectedPackage} 
                   onChange={(e) => setSelectedPackage(e.target.value)}
-                  className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-xs font-bold text-slate-900 focus:border-red-600 focus:outline-none"
+                  className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-xs font-bold text-slate-900 dark:text-white focus:border-red-600 focus:outline-none"
                 >
                   <option value="PAKET_1">PAKET_1 - 20 Mbps (Rp 115.000 / bln)</option>
-                  <option value="PAKET_2">PAKET_2 - 30 Mbps (Rp 148.000 / bln)</option>
+                  <option value="PAKET_2">PAKET_2 - 30 Mbps (Rp 142.000 / bln)</option>
                   <option value="PAKET_3">PAKET_3 - 50 Mbps (Rp 182.000 / bln)</option>
                   <option value="PAKET_4">PAKET_4 - 75 Mbps (Rp 260.000 / bln)</option>
                   <option value="PAKET_5">PAKET_5 - 100 Mbps (Rp 330.000 / bln)</option>
@@ -612,8 +605,8 @@ export default function Home() {
               </div>
 
               <div>
-                <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 mb-1.5">APAKAH SAAT INI ANDA SUDAH LANGGANAN INTERNET? *</label>
-                <select className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-xs text-slate-900 focus:border-red-600 focus:outline-none">
+                <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">APAKAH SAAT INI ANDA SUDAH LANGGANAN INTERNET? *</label>
+                <select className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-xs text-slate-900 dark:text-white focus:border-red-600 focus:outline-none">
                   <option>Belum Pernah Pasang</option>
                   <option>Internet Lokal (RT/RW NET)</option>
                   <option>ISP Besar (Indihome, Biznet, dll)</option>
@@ -622,25 +615,25 @@ export default function Home() {
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 mb-1.5">NAMA LENGKAP (SESUAI KTP) *</label>
-                  <input name="nama" type="text" required placeholder="Contoh: Ahmad Tauchid" className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-xs focus:border-red-600 focus:outline-none" />
+                  <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">NAMA LENGKAP (SESUAI KTP) *</label>
+                  <input name="nama" type="text" required placeholder="Contoh: Ahmad Tauchid" className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-xs text-slate-900 dark:text-white focus:border-red-600 focus:outline-none" />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 mb-1.5">NOMOR WHATSAPP AKTIF *</label>
-                  <input type="tel" required placeholder="Contoh: 08XXXXXXXXXX" className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-xs focus:border-red-600 focus:outline-none" />
+                  <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">NOMOR WHATSAPP AKTIF *</label>
+                  <input type="tel" required placeholder="Contoh: 08XXXXXXXXXX" className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-xs text-slate-900 dark:text-white focus:border-red-600 focus:outline-none" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 mb-1.5">KECAMATAN *</label>
-                  <select disabled className="w-full rounded-lg border border-slate-300 bg-slate-50 px-3 py-2.5 text-xs font-bold text-slate-700">
+                  <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">KECAMATAN *</label>
+                  <select disabled className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 px-3 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-300">
                     <option>GUMELAR</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 mb-1.5">DESA / KELURAHAN *</label>
-                  <select className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-xs text-slate-900 focus:border-red-600 focus:outline-none">
+                  <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">DESA / KELURAHAN *</label>
+                  <select className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-xs text-slate-900 dark:text-white focus:border-red-600 focus:outline-none">
                     <option>GUMELAR</option>
                     <option>CIHONJE</option>
                     <option>TLAGA</option>
@@ -655,22 +648,22 @@ export default function Home() {
               </div>
 
               <div>
-                <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 mb-1.5">ALAMAT LENGKAP (RT/RW) *</label>
-                <textarea required rows={2} placeholder="Sebutkan rincian alamat rumah lengkap" className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-xs focus:border-red-600 focus:outline-none"></textarea>
+                <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">ALAMAT LENGKAP (RT/RW) *</label>
+                <textarea required rows={2} placeholder="Sebutkan rincian alamat rumah lengkap" className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-xs text-slate-900 dark:text-white focus:border-red-600 focus:outline-none"></textarea>
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 mb-1.5">PILIH TANGGAL PEMASANGAN *</label>
-                  <select className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-xs text-slate-900 focus:border-red-600 focus:outline-none">
+                  <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">PILIH TANGGAL PEMASANGAN *</label>
+                  <select className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-xs text-slate-900 dark:text-white focus:border-red-600 focus:outline-none">
                     <option>Secepatnya</option>
                     <option>Hari Ini</option>
                     <option>Besok</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 mb-1.5">WAKTU SURVEI YANG PAS *</label>
-                  <select className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-xs text-slate-900 focus:border-red-600 focus:outline-none">
+                  <label className="block text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">WAKTU SURVEI YANG PAS *</label>
+                  <select className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-xs text-slate-900 dark:text-white focus:border-red-600 focus:outline-none">
                     <option>Pagi (08:00 - 11:00)</option>
                     <option>Siang (11:00 - 14:00)</option>
                     <option>Sore (14:00 - 17:00)</option>
@@ -687,25 +680,18 @@ export default function Home() {
         </div>
       )}
 
-        {/* ================= 9. FOOTER SECTION (WITH WHITE INVERTED LOGO) ================= */}
-      <footer className="bg-slate-900 text-white pt-20 pb-8 border-t border-slate-800">
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mx-auto max-w-7xl px-6 lg:px-8"
-        >
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+        {/* ================= 9. FOOTER DENGAN DARK MODERN LOOK ================= */}
+      <footer className="bg-slate-950 text-slate-400 py-16 border-t border-slate-900 text-sm">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div className="space-y-4">
-              {/* Logo Resmi Ter-invert Menjadi Putih Bersih */}
-              <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="inline-block" aria-label="Home">
+              <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="inline-block transition-transform duration-300 hover:scale-105" aria-label="Home">
                 <Image 
                   src="https://ik.imagekit.io/Gumelar/LogO/logo%20pt.png?updatedAt=1778213993513" 
                   alt="PT Akses Artha Media Logo Footer" 
                   width={160}
                   height={40}
-                  className="h-10 w-auto object-contain brightness-0 invert"
+                  className="h-10 w-auto object-contain brightness-0 invert drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                 />
               </a>
               <p className="text-xs text-slate-400 leading-relaxed text-justify">
@@ -739,7 +725,7 @@ export default function Home() {
             <p>© 2026 PT AKSES ARTHA MEDIA. All rights reserved.</p>
             {/* <a href="/admin" className="text-slate-600 hover:text-red-400 transition-colors">🔑 Admin</a> */}
           </div>
-        </motion.div>
+        </div>
       </footer>
 
       </ScrollObserver>

@@ -23,7 +23,7 @@ export default function ACRSection() {
   ];
 
   return (
-    <section id="acr-section" className="relative mx-auto max-w-7xl px-4 sm:px-6 py-24 lg:px-8 border-t border-slate-100 scroll-mt-20 overflow-hidden bg-slate-50 rounded-3xl my-12 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)]">
+    <section id="acr-section" className="relative mx-auto max-w-7xl px-4 sm:px-6 py-24 lg:px-8 border-t border-slate-100 dark:border-slate-800 scroll-mt-20 overflow-hidden bg-slate-50 dark:bg-slate-900/50 rounded-3xl my-12 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05)]">
       
       {/* Dynamic Animated Background Elements */}
       <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-red-600/10 blur-3xl animate-[pulse_6s_ease-in-out_infinite]"></div>
@@ -42,7 +42,7 @@ export default function ACRSection() {
         >
           <motion.span 
             whileHover={{ scale: 1.05 }}
-            className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 text-xs font-black uppercase tracking-widest text-red-600 mb-6 shadow-sm shadow-red-100 border border-red-100"
+            className="inline-flex items-center gap-2 rounded-full bg-white dark:bg-slate-900 px-5 py-2 text-xs font-black uppercase tracking-widest text-red-600 mb-6 shadow-sm shadow-red-100 dark:shadow-none border border-red-100 dark:border-red-900/50"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -50,10 +50,10 @@ export default function ACRSection() {
             </span>
             PROGRAM LOYALITAS PELANGGAN
           </motion.span>
-          <h2 className="mt-2 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl md:text-6xl drop-shadow-sm">
+          <h2 className="mt-2 text-4xl font-black tracking-tight text-slate-900 dark:text-white sm:text-5xl md:text-6xl drop-shadow-sm">
             Armedia Community <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-orange-500 to-red-500">Reward</span> (ACR)
           </h2>
-          <p className="mt-6 text-base leading-relaxed text-slate-600 max-w-4xl mx-auto text-justify">
+          <p className="mt-6 text-base leading-relaxed text-slate-600 dark:text-slate-400 max-w-4xl mx-auto text-justify">
             Adalah program loyalitas pelanggan yang dirancang sebagai bentuk penghargaan kepada seluruh pelanggan setia Armedia. Melalui program ini, setiap pelanggan yang aktif berlangganan dan melakukan pembayaran tagihan akan mendapatkan poin reward yang dapat dikumpulkan dan ditukarkan dengan berbagai hadiah menarik.
           </p>
         </motion.div>
@@ -67,7 +67,7 @@ export default function ACRSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-slate-600 text-sm md:text-base leading-relaxed bg-white/60 p-6 rounded-2xl border border-slate-100/50 shadow-sm backdrop-blur-sm space-y-4"
+              className="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed bg-white/60 dark:bg-slate-900/60 p-6 rounded-2xl border border-slate-100/50 dark:border-slate-800/50 shadow-sm backdrop-blur-sm space-y-4"
             >
               <p className="text-justify">
                 Semakin lama menjadi pelanggan dan semakin disiplin dalam melakukan pembayaran, semakin banyak poin yang akan diperoleh. Poin tersebut dapat ditukarkan dengan berbagai pilihan reward seperti Voucher BBM, Potongan tagihan internet, Pulsa, Paket data, Merchandise eksklusif Armedia, hingga kesempatan mengikuti Program undian berhadiah.
@@ -99,7 +99,7 @@ export default function ACRSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.05 }}
                   whileHover={{ y: -4, scale: 1.02 }}
-                  className="bg-white/80 backdrop-blur-md rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-xl hover:shadow-slate-200 hover:border-slate-300 transition-all duration-500 relative overflow-hidden group cursor-default"
+                  className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-slate-900 hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-500 relative overflow-hidden group cursor-default"
                 >
                   <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`}></div>
                   
@@ -108,7 +108,7 @@ export default function ACRSection() {
                       <span className="drop-shadow-md">{benefit.icon}</span>
                     </div>
                     <div className="flex-1 flex items-center h-12">
-                      <p className="text-slate-700 text-sm font-bold leading-snug group-hover:text-slate-900 transition-colors">
+                      <p className="text-slate-700 dark:text-slate-300 text-sm font-bold leading-snug group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
                         {benefit.text}
                       </p>
                     </div>
@@ -122,7 +122,7 @@ export default function ACRSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="mt-4 p-5 bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl border border-red-100/50 text-slate-700 text-sm leading-relaxed italic"
+              className="mt-4 p-5 bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-2xl border border-red-100/50 dark:border-red-900/30 text-slate-700 dark:text-slate-300 text-sm leading-relaxed italic"
             >
               "Dengan Armedia Community Reward , setiap pembayaran tagihan bukan hanya untuk menikmati layanan internet, tetapi juga menjadi poin Investasi yang dapat memberikan berbagai manfaat dan keuntungan tambahan bagi pelanggan."
             </motion.div>
@@ -175,19 +175,19 @@ export default function ACRSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm flex-grow flex flex-col justify-center"
+              className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl p-6 shadow-sm flex-grow flex flex-col justify-center"
             >
-              <h3 className="text-xs font-bold uppercase tracking-widest text-slate-600 mb-5 text-center flex items-center justify-center gap-2">
-                <span className="w-8 h-px bg-slate-200"></span>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-5 text-center flex items-center justify-center gap-2">
+                <span className="w-8 h-px bg-slate-200 dark:bg-slate-700"></span>
                 Pilihan Reward Anda
-                <span className="w-8 h-px bg-slate-200"></span>
+                <span className="w-8 h-px bg-slate-200 dark:bg-slate-700"></span>
               </h3>
               <div className="flex flex-wrap justify-center gap-2">
                 {rewards.map((reward, index) => (
                   <motion.div 
                     key={index}
                     whileHover={{ scale: 1.1, y: -2 }}
-                    className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-4 py-2 text-sm font-bold text-slate-700 border border-slate-200 hover:border-red-400 hover:bg-red-50 hover:text-red-700 hover:shadow-md transition-all cursor-default"
+                    className="inline-flex items-center gap-2 rounded-full bg-slate-50 dark:bg-slate-800 px-4 py-2 text-sm font-bold text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-red-400 dark:hover:border-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 hover:text-red-700 dark:hover:text-red-400 hover:shadow-md transition-all cursor-default"
                   >
                     <span>{reward.emoji}</span>
                     {reward.name}

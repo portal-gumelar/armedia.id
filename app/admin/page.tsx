@@ -39,10 +39,10 @@ export default function AdminPage() {
           <div className="text-center">
             <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-red-50 text-3xl mb-4">🛡️</div>
             <h1 className="text-2xl font-black text-slate-900">Admin ARMEDIA</h1>
-            <p className="text-xs text-slate-500 mt-2">PT AKSES ARTHA MEDIA — Management Console</p>
+            <p className="text-xs text-slate-600 mt-2">PT AKSES ARTHA MEDIA — Management Console</p>
           </div>
           <div>
-            <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">Password Admin</label>
+            <label className="block text-[10px] font-black uppercase tracking-widest text-slate-600 mb-2">Password Admin</label>
             <input
               type="password"
               value={password}
@@ -102,7 +102,7 @@ function AdminDashboard() {
         <header className="bg-white border-b border-slate-200 px-8 py-5 flex items-center justify-between sticky top-0 z-10">
           <div>
             <h1 className="text-lg font-black text-slate-900">{tabTitles[tab]}</h1>
-            <p className="text-[11px] text-slate-500 mt-0.5">PT AKSES ARTHA MEDIA — Admin Console</p>
+            <p className="text-[11px] text-slate-600 mt-0.5">PT AKSES ARTHA MEDIA — Admin Console</p>
           </div>
           <div className="flex items-center gap-3">
             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />

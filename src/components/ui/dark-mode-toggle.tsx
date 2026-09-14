@@ -1,52 +1,28 @@
 "use client";
 
-import React, { useState, useEffect, useSyncExternalStore } from "react";
+import React, { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+import { Moon, Sun } from "lucide-react";
 
 export default function DarkModeToggle() {
-  const [isDark, setIsDark] = useState(false);
-  
-  const isClient = useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false
-  );
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    
-    if (stored === "dark" || (!stored && prefersDark)) {
-      document.documentElement.classList.add("dark");
-      setIsDark(true);
-      if (!stored) localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      setIsDark(false);
-      if (!stored) localStorage.setItem("theme", "light");
-    }
+    setMounted(true);
   }, []);
 
-  const toggle = () => {
-    const next = !isDark;
-    setIsDark(next);
-    if (next) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  };
+  if (!mounted) return <div className="h-9 w-9" />;
 
-  if (!isClient) return null;
+  const isDark = theme === "dark";
 
   return (
     <button
-      onClick={toggle}
-      className="h-9 w-9 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-300 cursor-pointer text-sm"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className="h-9 w-9 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-300 cursor-pointer"
       aria-label={isDark ? "Switch ke Light Mode" : "Switch ke Dark Mode"}
     >
-      {isDark ? "☀️" : "🌙"}
+      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
     </button>
   );
 }

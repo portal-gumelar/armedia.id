@@ -90,7 +90,7 @@ export default function LeafletMap() {
               <p className="text-xs font-black uppercase tracking-wider text-slate-900">
                 {loc.name}
               </p>
-              <p className="text-[10px] text-slate-500 mt-1">
+              <p className="text-[10px] text-slate-600 mt-1">
                 {loc.type}
               </p>
             </div>
