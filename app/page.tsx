@@ -46,8 +46,7 @@ const internetPackages = [
     price: 'Rp 115.000',
     features: [
       'Upto 20 MBPS',
-      'Download / Upload Unlimited',
-      'DUAL BAND 2,4G & 5G'
+      'Download / Upload Unlimited'
     ],
     isPopular: true
   },
@@ -59,8 +58,7 @@ const internetPackages = [
     price: 'Rp 142.000',
     features: [
       'Upto 30 MBPS',
-      'Download / Upload Unlimited',
-      'DUAL BAND 2,4G & 5G'
+      'Download / Upload Unlimited'
     ],
     isPopular: true
   },
