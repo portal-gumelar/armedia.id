@@ -39,65 +39,65 @@ type Article = {
    ───────────────────────────────────────────── */
 const internetPackages = [
   {
-    id: 'PAKET_1',
-    name: 'PAKET_1 (Starter)',
+    id: 'GUYUB_1',
+    name: 'GUYUB_1',
     speed: '20 Mbps',
     speedText: 'Upto 20 MBPS',
     price: 'Rp 115.000',
     features: [
-      'Bayar 115.000 Langsung ON',
+      'Upto 20 MBPS',
       'Download / Upload Unlimited',
       'DUAL BAND 2,4G & 5G'
     ],
     isPopular: true
   },
   {
-    id: 'PAKET_2',
-    name: 'PAKET_2 (Family)',
+    id: 'GUYUB_2',
+    name: 'GUYUB_2',
     speed: '30 Mbps',
     speedText: 'Upto 30 MBPS',
     price: 'Rp 142.000',
     features: [
-      'Kecepatan Optimal Stabil',
+      'Upto 30 MBPS',
       'Download / Upload Unlimited',
       'DUAL BAND 2,4G & 5G'
     ],
     isPopular: true
   },
   {
-    id: 'PAKET_3',
-    name: 'PAKET_3 (Premium)',
+    id: 'GUYUB_3',
+    name: 'GUYUB_3',
     speed: '50 Mbps',
     speedText: 'Upto 50 MBPS',
-    price: 'Rp 175.000',
+    price: 'Rp 182.000',
     features: [
-      'Bandwidth Extra Besar',
+      'Upto 50 MBPS',
       'Download / Upload Unlimited',
       'DUAL BAND 2,4G & 5G'
     ],
     isPopular: false
   },
   {
-    id: 'PAKET_4',
-    name: 'PAKET_4 (Super)',
+    id: 'GUYUB_4',
+    name: 'GUYUB_4',
     speed: '75 Mbps',
     speedText: 'Upto 75 MBPS',
-    price: 'Rp 250.000',
+    price: 'Rp 260.000',
     features: [
-      'Bandwidth Super Besar & Stabil',
+      'Upto 75 MBPS',
       'Download / Upload Unlimited',
       'DUAL BAND 2,4G & 5G'
     ],
     isPopular: false
   },
   {
-    id: 'PAKET_5',
-    name: 'PAKET_5 (Ultimate)',
+    id: 'GUYUB_5',
+    name: 'GUYUB_5',
     speed: '100 Mbps',
     speedText: 'Upto 100 MBPS',
-    price: 'Rp 315.000',
+    price: 'Rp 330.000',
     features: [
-      'Kecepatan Maksimal Tanpa Batas',
+      'Upto 100 MBPS',
       'Download / Upload Unlimited',
       'DUAL BAND 2,4G & 5G'
     ],
@@ -109,7 +109,7 @@ export default function Home() {
   // State Manajemen Komponen Form Modal & Mobile Drawer
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState('PAKET_1');
+  const [selectedPackage, setSelectedPackage] = useState('GUYUB_1');
   const [activeTab, setActiveTab] = useState('home');
 
   // Data dari Supabase
@@ -190,6 +190,7 @@ export default function Home() {
               width={160}
               height={40}
               priority
+              unoptimized
               className="h-10 w-auto object-contain"
             />
           </a>
@@ -273,7 +274,7 @@ export default function Home() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => openRegisterModal('PAKET_1')}
+                onClick={() => openRegisterModal('GUYUB_1')}
                 className="rounded-md bg-red-600 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-red-600/10 transition-all duration-300 hover:bg-slate-900 hover:shadow-xl cursor-pointer"
               >
                 MULAI DAFTAR SEKARANG
@@ -596,11 +597,11 @@ export default function Home() {
                   onChange={(e) => setSelectedPackage(e.target.value)}
                   className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-xs font-bold text-slate-900 dark:text-white focus:border-red-600 focus:outline-none"
                 >
-                  <option value="PAKET_1">PAKET_1 - 20 Mbps (Rp 115.000 / bln)</option>
-                  <option value="PAKET_2">PAKET_2 - 30 Mbps (Rp 142.000 / bln)</option>
-                  <option value="PAKET_3">PAKET_3 - 50 Mbps (Rp 175.000 / bln)</option>
-                  <option value="PAKET_4">PAKET_4 - 75 Mbps (Rp 250.000 / bln)</option>
-                  <option value="PAKET_5">PAKET_5 - 100 Mbps (Rp 315.000 / bln)</option>
+                  <option value="GUYUB_1">GUYUB_1 - 20 Mbps (Rp 115.000 / bln)</option>
+                  <option value="GUYUB_2">GUYUB_2 - 30 Mbps (Rp 142.000 / bln)</option>
+                  <option value="GUYUB_3">GUYUB_3 - 50 Mbps (Rp 182.000 / bln)</option>
+                  <option value="GUYUB_4">GUYUB_4 - 75 Mbps (Rp 260.000 / bln)</option>
+                  <option value="GUYUB_5">GUYUB_5 - 100 Mbps (Rp 330.000 / bln)</option>
                 </select>
               </div>
 
@@ -691,6 +692,7 @@ export default function Home() {
                   alt="PT Akses Artha Media Logo Footer" 
                   width={160}
                   height={40}
+                  unoptimized
                   className="h-10 w-auto object-contain brightness-0 invert drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                 />
               </a>
